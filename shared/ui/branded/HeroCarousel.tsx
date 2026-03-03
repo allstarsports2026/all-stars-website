@@ -89,7 +89,7 @@ export function HeroCarousel() {
     )
 
     return (
-        <div className="w-full bg-white flex flex-col" style={{ minHeight: "100svh" }}>
+        <div className="w-full bg-white flex flex-col" style={{ minHeight: "90svh" }}>
             {/* Navbar offset */}
             <div className="h-20 shrink-0" />
 
@@ -98,7 +98,7 @@ export function HeroCarousel() {
                 {/* Product Image */}
                 <div
                     className={cn(
-                        "order-1 lg:order-2 relative flex items-center justify-center bg-white",
+                        "order-1 lg:order-2 flex items-center justify-center bg-white",
                         "h-[55vw] min-h-[220px] max-h-[380px]",
                         "lg:h-auto lg:max-h-none",
                         "transition-all duration-500 ease-out",
@@ -113,11 +113,6 @@ export function HeroCarousel() {
                             className="object-contain pointer-events-none select-none drop-shadow-xl"
                             priority
                         />
-                    </div>
-                    {/* Mobile-only nav — overlaid at the bottom of the image */}
-                    <div className="absolute bottom-2 inset-x-0 lg:hidden flex items-center justify-between px-6">
-                        <NavDots />
-                        <NavArrows />
                     </div>
                 </div>
 
@@ -150,9 +145,15 @@ export function HeroCarousel() {
                         </p>
 
                         {/* CTA */}
-                        <CustomButton variant="outline" asChild size="lg">
+                        <CustomButton asChild>
                             <Link href="/shop">Shop the Collection</Link>
                         </CustomButton>
+
+                        {/* Mobile nav — under the button */}
+                        <div className="flex items-center justify-between w-full mt-6 lg:hidden">
+                            <NavDots />
+                            <NavArrows />
+                        </div>
                     </div>
                 </div>
             </div>

@@ -12,7 +12,7 @@ export function FeaturedCollection({ products }: FeaturedCollectionProps) {
 
 
     return (
-        <section className="py-24 px-6 bg-white border-t border-black/5">
+        <section className="pt-12 pb-24 px-6 bg-white border-t border-black/5">
             <div className="max-w-7xl mx-auto">
 
                 {/* Section Header */}
