@@ -3,7 +3,7 @@ import { Instagram, Twitter, Facebook } from "lucide-react"
 
 export function Footer() {
     return (
-        <footer className="border-t border-black/5 bg-white py-12 px-6">
+        <footer className="border-t border-black/5 bg-white pt-12 pb-8 md:pb-12 px-6">
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
 
                 {/* Brand */}
@@ -49,7 +49,7 @@ export function Footer() {
             </div>
 
             {/* Bottom line */}
-            <div className="max-w-7xl mx-auto mt-10 pt-6 border-t border-black/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="max-w-7xl mx-auto mt-8 md:mt-10 pt-6 border-t border-black/5 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <p className="text-[9px] font-black uppercase tracking-widest text-secondary/25">
                     © {new Date().getFullYear()} Allstar Sports Apparel. All rights reserved.
                 </p>

@@ -3,9 +3,7 @@ import {
     Layers,
     Shirt,
     MessageSquare,
-    TrendingUp,
     ChevronRight,
-    Search
 } from "lucide-react"
 import Link from "next/link"
 import { getAdminStats } from "@/lib/actions/admin"
@@ -15,10 +13,10 @@ export default async function AdminDashboard() {
     const data = await getAdminStats()
 
     const stats = [
-        { name: "Total Sports", value: data.sports.toString(), icon: Trophy, trend: "+0", color: "text-blue-500" },
-        { name: "Categories", value: data.categories.toString(), icon: Layers, trend: "+0", color: "text-purple-500" },
-        { name: "Total Products", value: data.products.toString(), icon: Shirt, trend: "+0", color: "text-primary" },
-        { name: "Messages Received", value: data.messages.toString(), icon: MessageSquare, trend: "+0", color: "text-green-500" },
+        { name: "Total Sports", value: data.sports.toString(), icon: Trophy, color: "text-blue-500" },
+        { name: "Categories", value: data.categories.toString(), icon: Layers, color: "text-purple-500" },
+        { name: "Total Products", value: data.products.toString(), icon: Shirt, color: "text-primary" },
+        { name: "Messages Received", value: data.messages.toString(), icon: MessageSquare, color: "text-green-500" },
     ]
 
     return (
@@ -36,9 +34,6 @@ export default async function AdminDashboard() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {stats.map((stat) => (
                     <div key={stat.name} className="bg-white border border-slate-100 p-8 flex flex-col gap-6 relative overflow-hidden group hover:ring-4 hover:ring-primary/5 transition-all">
-                        <div className="flex items-center justify-between relative z-10">
-                            <span className="text-[10px] font-black text-white bg-secondary px-2 py-1 tracking-wider italic">{stat.trend}</span>
-                        </div>
                         <div className="relative z-10">
                             <h3 className="text-3xl font-black text-secondary tracking-tighter mb-1">{stat.value}</h3>
                             <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">{stat.name}</p>

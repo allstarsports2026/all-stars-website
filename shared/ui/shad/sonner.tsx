@@ -9,25 +9,25 @@ const Toaster = ({ ...props }: ToasterProps) => {
       className="toaster group"
       toastOptions={{
         classNames: {
-          toast: 'group-[.toaster]:bg-secondary group-[.toaster]:text-white group-[.toaster]:border-primary group-[.toaster]:shadow-none group-[.toaster]:rounded-none font-bold uppercase tracking-[0.05em] text-[10px] px-6 py-4',
-          description: 'group-[.toast]:text-white/60 font-medium normal-case tracking-normal',
+          toast: 'group-[.toaster]:bg-white group-[.toaster]:text-secondary group-[.toaster]:border-none group-[.toaster]:shadow-lg group-[.toaster]:rounded-none font-bold uppercase tracking-[0.05em] text-[10px] px-6 py-4',
+          description: 'group-[.toast]:text-secondary/60 font-medium normal-case tracking-normal',
           actionButton: 'group-[.toast]:bg-primary group-[.toast]:text-primary-foreground group-[.toast]:rounded-none',
-          cancelButton: 'group-[.toast]:bg-white/10 group-[.toast]:text-white/60 group-[.toast]:rounded-none',
-          success: 'group-[.toast]:border-primary',
-          error: 'group-[.toast]:border-red-500',
+          cancelButton: 'group-[.toast]:bg-black/5 group-[.toast]:text-secondary/60 group-[.toast]:rounded-none',
+          success: 'group-[.toast]:border-none',
+          error: 'group-[.toast]:border-none',
         },
       }}
       icons={{
-        success: <CheckCircle2 className="h-4 w-4 text-primary" />,
-        info: <Info className="h-4 w-4 text-primary" />,
+        success: <CheckCircle2 className="h-4 w-4 text-emerald-500" />,
+        info: <Info className="h-4 w-4 text-blue-500" />,
         warning: <AlertTriangle className="h-4 w-4 text-amber-500" />,
         error: <AlertCircle className="h-4 w-4 text-red-500" />,
       }}
       style={
         {
-          '--normal-bg': '#101010',
-          '--normal-text': '#FFFFFF',
-          '--normal-border': 'rgba(217, 4, 41, 0.2)', // primary with alpha
+          '--normal-bg': '#FFFFFF',
+          '--normal-text': '#101010',
+          '--normal-border': 'transparent',
         } as React.CSSProperties
       }
       {...props}

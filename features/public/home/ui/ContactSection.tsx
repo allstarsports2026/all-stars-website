@@ -25,7 +25,7 @@ const CONTACT_CHANNELS = [
 
 export function ContactSection() {
     return (
-        <section className="py-24 px-6 bg-[#F7F7F7] border-t border-black/5">
+        <section className="py-16 md:py-24 px-6 bg-[#F7F7F7] border-t border-black/5">
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
                 {/* Left – CTA Text */}

@@ -12,7 +12,6 @@ export function ContactForm() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setIsPending(true)
-
         const formData = new FormData(e.currentTarget)
         const data = {
             firstName: formData.get("firstName") as string,
@@ -22,15 +21,18 @@ export function ContactForm() {
             message: formData.get("message") as string,
         }
 
-        try {
-            await submitContactForm(data)
-            toast.success("Transmission Received. Our team will contact you soon.")
-            e.currentTarget.reset()
-        } catch (error) {
-            toast.error("Transmission Failed. Please try again later.")
-        } finally {
-            setIsPending(false)
-        }
+        toast.promise(submitContactForm(data), {
+            loading: "Sending message...",
+            success: () => {
+                setIsPending(false)
+                return "Message successfully sent. We'll be in touch soon."
+            },
+            error: () => {
+                setIsPending(false)
+                return "Failed to send message. Please try again."
+            },
+        })
+        e.currentTarget.reset()
     }
 
     return (
