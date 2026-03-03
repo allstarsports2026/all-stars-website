@@ -109,27 +109,19 @@ export default function AboutPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 w-full">
                         <div className="flex flex-col items-center gap-4">
-                            <div className="h-16 w-16 bg-surface-alt flex items-center justify-center border border-black/5 group hover:border-primary transition-colors">
-                                <Zap className="text-primary group-hover:scale-110 transition-transform" size={24} />
-                            </div>
+                            <Zap className="text-primary" size={28} />
                             <h3 className="text-sm font-black uppercase tracking-widest text-secondary">Rapid Production</h3>
                         </div>
                         <div className="flex flex-col items-center gap-4">
-                            <div className="h-16 w-16 bg-surface-alt flex items-center justify-center border border-black/5 group hover:border-primary transition-colors">
-                                <Users className="text-primary group-hover:scale-110 transition-transform" size={24} />
-                            </div>
+                            <Users className="text-primary" size={28} />
                             <h3 className="text-sm font-black uppercase tracking-widest text-secondary">Personal Touch</h3>
                         </div>
                         <div className="flex flex-col items-center gap-4">
-                            <div className="h-16 w-16 bg-surface-alt flex items-center justify-center border border-black/5 group hover:border-primary transition-colors">
-                                <Target className="text-primary group-hover:scale-110 transition-transform" size={24} />
-                            </div>
+                            <Target className="text-primary" size={28} />
                             <h3 className="text-sm font-black uppercase tracking-widest text-secondary">Pro Standards</h3>
                         </div>
                         <div className="flex flex-col items-center gap-4">
-                            <div className="h-16 w-16 bg-surface-alt flex items-center justify-center border border-black/5 group hover:border-primary transition-colors">
-                                <ShoppingBag className="text-primary group-hover:scale-110 transition-transform" size={24} />
-                            </div>
+                            <ShoppingBag className="text-primary" size={28} />
                             <h3 className="text-sm font-black uppercase tracking-widest text-secondary">Future-Ready</h3>
                         </div>
                     </div>
