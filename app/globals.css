@@ -1,0 +1,134 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #FFFFFF;
+  --foreground: #0B090A;
+  --card: #FFFFFF;
+  --card-foreground: #0B090A;
+  --popover: #FFFFFF;
+  --popover-foreground: #0B090A;
+  --primary: #D90429;
+  --primary-foreground: #FFFFFF;
+  --secondary: #161A1D;
+  --secondary-foreground: #F5F3F4;
+  --surface-alt: #F5F3F4;
+  --muted: #F5F3F4;
+  --muted-foreground: #660708;
+  --accent: #D90429;
+  --accent-foreground: #FFFFFF;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #E5383B;
+  --input: #E5383B;
+  --ring: #D90429;
+  --radius: 0px;
+  --action-gradient: linear-gradient(135deg, #D90429 0%, #A4161A 100%);
+  --sidebar: #0B090A;
+  --sidebar-foreground: #F5F3F4;
+  --sidebar-primary: #D90429;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #E5383B;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #E5383B;
+  --sidebar-ring: #D90429;
+}
+
+.dark {
+  --background: #0B090A;
+  --foreground: #F5F3F4;
+  --card: #161A1D;
+  --card-foreground: #F5F3F4;
+  --popover: #0B090A;
+  --popover-foreground: #F5F3F4;
+  --primary: #D90429;
+  --primary-foreground: #FFFFFF;
+  --secondary: #660708;
+  --secondary-foreground: #F5F3F4;
+  --muted: #161A1D;
+  --muted-foreground: #A4161A;
+  --accent: #E5383B;
+  --accent-foreground: #FFFFFF;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #660708;
+  --input: #660708;
+  --ring: #D90429;
+  --sidebar: #0B090A;
+  --sidebar-foreground: #F5F3F4;
+  --sidebar-primary: #D90429;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #660708;
+  --sidebar-accent-foreground: #F5F3F4;
+  --sidebar-border: #660708;
+  --sidebar-ring: #D90429;
+}
+
+@theme inline {
+  --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-archivo), ui-serif, system-ui, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface-alt: var(--surface-alt);
+  --background-image-action-gradient: var(--action-gradient);
+  
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html, body {
+    overflow-x: clip;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-black tracking-tight;
+  }
+  .industrial-text {
+    @apply font-serif;
+  }
+  button, 
+  [role="button"],
+  a {
+    @apply cursor-pointer;
+  }
+}
+
+@layer utilities {
+  .vertical-lr {
+    writing-mode: vertical-lr;
+  }
+}
