@@ -20,13 +20,11 @@ export function ProductCard({ product }: ProductCardProps) {
                     fill
                     className="object-contain p-6 group-hover:scale-105 transition-transform duration-500"
                 />
-                {/* Tag badge */}
                 {product.tag && (
                     <div className="absolute top-3 left-3 bg-primary text-white text-[9px] font-black uppercase tracking-widest px-2 py-1">
                         {product.tag}
                     </div>
                 )}
-                {/* Hover CTA overlay */}
                 <div className="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/5 transition-all duration-300 flex items-end justify-center pb-5 opacity-0 group-hover:opacity-100">
                     <span className="text-[10px] font-black uppercase tracking-widest text-primary border border-primary bg-white px-4 py-2">
                         View Details →
@@ -34,7 +32,6 @@ export function ProductCard({ product }: ProductCardProps) {
                 </div>
             </div>
 
-            {/* Info — same typography as FeaturedCollection */}
             <div className="mt-4">
                 <h3 className="text-lg font-black uppercase italic tracking-tight text-secondary">
                     {product.name}

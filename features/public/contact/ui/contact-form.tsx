@@ -35,7 +35,7 @@ export function ContactForm() {
 
     return (
         <div className="bg-surface-alt p-8 md:p-12 relative border border-black/5">
-            <h2 className="text-4xl font-black italic uppercase tracking-tighter mb-10 text-secondary">Send a Message</h2>
+            <h2 className="text-4xl font-black italic uppercase tracking-tighter mb-10 text-secondary">Enquire or Place Order</h2>
             <form className="space-y-10" onSubmit={handleSubmit}>
                 <div className="grid gap-10 md:grid-cols-2">
                     <div className="space-y-2">
