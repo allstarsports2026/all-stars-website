@@ -1,6 +1,8 @@
 import { ShopPageContent } from "@/features/public/shop/products/ui/ShopPageContent"
 import { getPublicSports, getPublicProducts } from "@/lib/actions/public"
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: "Shop All Jerseys | Allstar Sports Apparel",
   description: "Browse our full collection of vintage hockey, basketball, football, baseball, and soccer jerseys. Made to order — designed for champions.",

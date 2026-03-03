@@ -1,11 +1,10 @@
 import { getSports, addSport } from "@/lib/actions/admin"
+import { SubmitButton } from "@/app/admin/(dashboard)/_components/SubmitButton"
 import {
     Trophy,
     Plus,
     Calendar,
     Hash,
-    ChevronRight,
-    Search
 } from "lucide-react"
 
 export const metadata = {
@@ -56,9 +55,7 @@ export default async function AdminSports() {
                                         className="w-full bg-slate-50 border border-slate-100 rounded-none px-6 py-4 text-sm font-black text-secondary focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-slate-200 uppercase"
                                     />
                                 </div>
-                                <button className="w-full h-16 bg-secondary text-white hover:bg-primary transition-all flex items-center justify-center gap-3 text-xs font-black uppercase tracking-widest italic">
-                                    Create Sport <Plus size={16} />
-                                </button>
+                                <SubmitButton label="Create Sport" icon={<Plus size={16} />} />
                             </form>
                         </div>
                     </div>

@@ -2,6 +2,8 @@ import { SportPageContent } from "@/features/public/shop/categories/ui/SportPage
 import { getPublicSports, getPublicProducts } from "@/lib/actions/public"
 import { notFound } from "next/navigation"
 
+export const dynamic = 'force-dynamic'
+
 interface Props {
     params: Promise<{ sport: string }>
 }

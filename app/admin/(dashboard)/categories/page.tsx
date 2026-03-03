@@ -1,4 +1,5 @@
 import { getCategoriesWithSports, getSports, addCategory } from "@/lib/actions/admin"
+import { SubmitButton } from "@/app/admin/(dashboard)/_components/SubmitButton"
 import { format } from "date-fns"
 import {
     Layers,
@@ -74,9 +75,7 @@ export default async function AdminCategories() {
                                     />
                                 </div>
 
-                                <button className="w-full h-16 bg-secondary text-white hover:bg-primary transition-all flex items-center justify-center gap-3 text-xs font-black uppercase tracking-widest italic shadow-xl shadow-secondary/10 hover:shadow-primary/20">
-                                    Create Category <Plus size={16} />
-                                </button>
+                                <SubmitButton label="Create Category" icon={<Plus size={16} />} />
                             </form>
                         </div>
                     </div>
