@@ -120,7 +120,7 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
                                     ) : (
                                         <>
                                             <ImageIcon size={32} className="text-white/10 group-hover:text-primary transition-colors" />
-                                            <span className="text-[10px] font-black uppercase tracking-widest text-white/40 group-hover:text-white">Upload Jersey Asset</span>
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-white/40 group-hover:text-white">Upload Product Image</span>
                                         </>
                                     )}
                                 </button>
@@ -129,38 +129,38 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
                     </div>
 
                     <div className="space-y-6">
-                        <div className="space-y-2">
-                            <label className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30">Registry Name</label>
-                            <input name="name" required className="w-full bg-white/5 border border-white/10 px-4 py-4 text-sm font-black text-white focus:outline-none focus:border-primary uppercase" />
+                        <div className="space-y-4">
+                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/30 ml-1">Product Name</label>
+                            <input name="name" required className="w-full bg-white/5 border border-white/10 px-6 py-4 text-sm font-black text-white focus:outline-none focus:border-primary uppercase rounded-none" placeholder="E.G. CLASSIC JERSEY" />
                         </div>
-                        <div className="space-y-2">
-                            <label className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30">Manifest Description</label>
-                            <textarea name="description" required className="w-full bg-white/5 border border-white/10 px-4 py-4 text-sm font-medium text-white/60 focus:outline-none focus:border-primary min-h-[120px]" />
+                        <div className="space-y-4">
+                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/30 ml-1">Description</label>
+                            <textarea name="description" required className="w-full bg-white/5 border border-white/10 px-6 py-4 text-sm font-medium text-white/60 focus:outline-none focus:border-primary min-h-[120px] rounded-none" placeholder="Enter product details..." />
                         </div>
                     </div>
                 </div>
 
-                <div className="bg-white border border-black/5 p-8 space-y-6">
+                <div className="bg-white border border-black/5 p-6 md:p-8 space-y-6">
                     <h3 className="text-lg font-black uppercase italic tracking-tight text-secondary">Classification</h3>
-                    <div className="grid grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                            <label className="text-[9px] font-black uppercase tracking-[0.2em] text-secondary/30">Sport Vessel</label>
-                            <select name="sportId" required className="w-full border border-black/5 bg-surface-alt px-4 py-4 text-[10px] font-black uppercase tracking-widest">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        <div className="space-y-4">
+                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-secondary/30 ml-1">Sport</label>
+                            <select name="sportId" required className="w-full border border-slate-100 bg-slate-50 px-6 py-4 text-[10px] font-black uppercase tracking-widest rounded-none focus:ring-4 focus:ring-primary/10 transition-all outline-none">
                                 <option value="">SELECT...</option>
                                 {sports.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
                             </select>
                         </div>
-                        <div className="space-y-2">
-                            <label className="text-[9px] font-black uppercase tracking-[0.2em] text-secondary/30">Category Matrix</label>
-                            <select name="categoryId" required className="w-full border border-black/5 bg-surface-alt px-4 py-4 text-[10px] font-black uppercase tracking-widest">
+                        <div className="space-y-4">
+                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-secondary/30 ml-1">Category</label>
+                            <select name="categoryId" required className="w-full border border-slate-100 bg-slate-50 px-6 py-4 text-[10px] font-black uppercase tracking-widest rounded-none focus:ring-4 focus:ring-primary/10 transition-all outline-none">
                                 <option value="">SELECT...</option>
                                 {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                             </select>
                         </div>
                     </div>
-                    <div className="space-y-2">
-                        <label className="text-[9px] font-black uppercase tracking-[0.2em] text-secondary/30">Designator Tag (Optional)</label>
-                        <input name="tag" placeholder="e.g. NEW ARRIVAL" className="w-full border border-black/5 bg-surface-alt px-4 py-4 text-[10px] font-black uppercase tracking-widest" />
+                    <div className="space-y-4">
+                        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-secondary/30 ml-1">Tag (Optional)</label>
+                        <input name="tag" placeholder="e.g. NEW ARRIVAL" className="w-full border border-slate-100 bg-slate-50 px-6 py-4 text-[10px] font-black uppercase tracking-widest rounded-none focus:ring-4 focus:ring-primary/10 transition-all outline-none" />
                     </div>
                 </div>
             </div>
@@ -169,15 +169,15 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
             <div className="space-y-10">
 
                 {/* Sizes */}
-                <div className="bg-white border border-black/5 p-8 space-y-8">
-                    <div className="flex items-center gap-3">
+                <div className="bg-white border border-black/5 p-6 md:p-8 space-y-8">
+                    <div className="flex items-center gap-4">
                         <Ruler size={18} className="text-primary" />
-                        <h3 className="text-lg font-black uppercase italic tracking-tight text-secondary">Size Specifications</h3>
+                        <h3 className="text-lg font-black uppercase italic tracking-tight text-secondary">Size Options</h3>
                     </div>
 
                     <div className="space-y-6">
                         <div>
-                            <p className="text-[9px] font-black uppercase tracking-[0.4em] text-secondary/30 mb-4">Adult Fleet</p>
+                            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-300 mb-4 ml-1">Adult Sizes</p>
                             <div className="flex flex-wrap gap-2">
                                 {["XS", "S", "M", "L", "XL", "XXL", "3XL"].map((size) => (
                                     <button
@@ -196,7 +196,7 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
                         </div>
 
                         <div>
-                            <p className="text-[9px] font-black uppercase tracking-[0.4em] text-secondary/30 mb-4">Youth Fleet</p>
+                            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-300 mb-4 ml-1">Youth Sizes</p>
                             <div className="flex flex-wrap gap-2">
                                 {["YXS", "YS", "YM", "YL", "YXL"].map((size) => (
                                     <button
@@ -217,10 +217,10 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
                 </div>
 
                 {/* Colors */}
-                <div className="bg-white border border-black/5 p-8 space-y-8">
-                    <div className="flex items-center gap-3">
+                <div className="bg-white border border-black/5 p-6 md:p-8 space-y-8">
+                    <div className="flex items-center gap-4">
                         <Palette size={18} className="text-primary" />
-                        <h3 className="text-lg font-black uppercase italic tracking-tight text-secondary">Color Spectrum</h3>
+                        <h3 className="text-lg font-black uppercase italic tracking-tight text-secondary">Color Options</h3>
                     </div>
 
                     <div className="space-y-6">
@@ -258,7 +258,7 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
                 </div>
 
                 {/* Numbers */}
-                <div className="bg-white border border-black/5 p-8 space-y-8">
+                <div className="bg-white border border-black/5 p-6 md:p-8 space-y-8">
                     <div className="flex items-center gap-3">
                         <Hash size={18} className="text-primary" />
                         <h3 className="text-lg font-black uppercase italic tracking-tight text-secondary">Available Numbers</h3>
@@ -301,8 +301,8 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
                         disabled={loading || !imageUrl}
                         className="w-full h-20 text-lg flex items-center justify-center gap-4"
                     >
-                        {loading ? <Loader2 className="animate-spin" /> : <Shirt size={20} />}
-                        Commence Production Manifest →
+                        {loading ? <Loader2 className="animate-spin text-white" /> : <Plus size={20} className="text-white" />}
+                        Save Product Entry →
                     </CustomButton>
                 </div>
             </div>

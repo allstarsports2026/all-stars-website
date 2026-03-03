@@ -18,10 +18,10 @@ export function LogoutButton() {
                     }
                 })
             }}
-            className="w-full flex items-center gap-4 px-4 py-4 text-xs font-black uppercase tracking-widest text-white/20 hover:text-red-400 transition-colors"
+            className="w-full flex items-center gap-4 px-6 py-4 text-[11px] font-black uppercase tracking-widest text-slate-400 hover:text-primary hover:bg-slate-50 transition-all group"
         >
-            <LogOut size={18} />
-            Detach Registry
+            <LogOut size={18} className="group-hover:rotate-12 transition-transform" />
+            Log out
         </button>
     )
 }

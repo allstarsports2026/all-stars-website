@@ -1,6 +1,5 @@
 import { ProductDetailContent } from "@/features/public/shop/products/ui/ProductDetailContent"
-import { JERSEY_PRODUCTS } from "@/features/public/shop/products/data/mock-products"
-import { SPORTS } from "@/features/public/shop/categories/data/categories"
+import { getPublicProducts, getPublicSports, getProductBySlug } from "@/lib/actions/public"
 import { notFound } from "next/navigation"
 
 interface Props {
@@ -8,7 +7,8 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-    return JERSEY_PRODUCTS.map((p) => ({
+    const products = await getPublicProducts()
+    return products.map((p) => ({
         sport: p.sport,
         product: p.id,
     }))
@@ -16,8 +16,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props) {
     const { sport: sportSlug, product: productId } = await params
-    const product = JERSEY_PRODUCTS.find((p) => p.id === productId && p.sport === sportSlug)
-    const sport = SPORTS.find((s) => s.slug === sportSlug)
+    const product = await getProductBySlug(productId)
+    const sports = await getPublicSports()
+    const sport = sports.find((s) => s.slug === sportSlug)
+
     if (!product) return {}
     return {
         title: `${product.name} — ${sport?.name ?? sportSlug} | Allstar Sports Apparel`,
@@ -27,7 +29,19 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function ProductPage({ params }: Props) {
     const { sport: sportSlug, product: productId } = await params
-    const product = JERSEY_PRODUCTS.find((p) => p.id === productId && p.sport === sportSlug)
+    const product = await getProductBySlug(productId)
+    const sports = await getPublicSports()
+    const products = await getPublicProducts()
+
     if (!product) notFound()
-    return <ProductDetailContent sportSlug={sportSlug} productId={productId} />
+
+    return (
+        <ProductDetailContent
+            sportSlug={sportSlug}
+            product={product}
+            initialSports={sports}
+            initialProducts={products}
+        />
+    )
 }
+

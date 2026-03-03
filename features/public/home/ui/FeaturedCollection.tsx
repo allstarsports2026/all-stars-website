@@ -1,12 +1,15 @@
 import Image from "next/image"
 import Link from "next/link"
 import { CustomButton } from "@/shared/ui/branded/CustomButton"
-
-import { JERSEY_PRODUCTS } from "@/features/public/shop/products/data/mock-products"
 import { ProductCard } from "@/features/public/shop/products/ui/ProductCard"
 
-export function FeaturedCollection() {
-    const featured = JERSEY_PRODUCTS.slice(0, 6)
+interface FeaturedCollectionProps {
+    products: any[]
+}
+
+export function FeaturedCollection({ products }: FeaturedCollectionProps) {
+    const featured = products.slice(0, 6)
+
 
     return (
         <section className="py-24 px-6 bg-white border-t border-black/5">

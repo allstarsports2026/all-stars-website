@@ -1,22 +1,26 @@
 "use client"
 
 import React, { useState } from "react"
-import { SPORTS } from "@/features/public/shop/categories/data/categories"
-import { JERSEY_PRODUCTS } from "@/features/public/shop/products/data/mock-products"
 import { ShopHeader } from "@/features/public/shop/shared/ui/ShopHeader"
 import { CategoryFilters } from "@/features/public/shop/categories/ui/CategoryFilters"
 import { ProductGridSection } from "./ProductGridSection"
 
-export function ShopPageContent() {
+interface ShopPageContentProps {
+    initialSports: any[]
+    initialProducts: any[]
+}
+
+export function ShopPageContent({ initialSports, initialProducts }: ShopPageContentProps) {
     const allTab = { slug: "all", name: "All" }
-    // Build flat tab list: All > Sport > Sport Vintage …
+
+    // Build dynamic tab list from DB sports/categories
     const tabs = [
         allTab,
-        ...SPORTS.flatMap((s) => [
+        ...initialSports.flatMap((s) => [
             { slug: s.slug, name: s.name },
-            ...s.subcategories.map((sub) => ({
-                slug: sub.slug,
-                name: `${s.name} — ${sub.name}`,
+            ...s.categories.map((cat: any) => ({
+                slug: cat.slug,
+                name: `${s.name} — ${cat.name}`,
             })),
         ]),
     ]
@@ -24,12 +28,18 @@ export function ShopPageContent() {
     const [active, setActive] = useState("all")
 
     const filtered = React.useMemo(() => {
-        if (active === "all") return JERSEY_PRODUCTS
-        // Check if it's a sport slug or a subcategory slug
-        const isSport = SPORTS.some((s) => s.slug === active)
-        if (isSport) return JERSEY_PRODUCTS.filter((p) => p.sport === active)
-        return JERSEY_PRODUCTS.filter((p) => p.category === active)
-    }, [active])
+        if (active === "all") return initialProducts
+
+        // Check if it's a sport slug
+        const activeSport = initialSports.find((s) => s.slug === active)
+        if (activeSport) {
+            return initialProducts.filter((p) => p.sport === active)
+        }
+
+        // Otherwise filter by category slug
+        return initialProducts.filter((p) => p.category === active)
+    }, [active, initialProducts, initialSports])
+
 
     return (
         <div className="pt-32 pb-24 px-6">

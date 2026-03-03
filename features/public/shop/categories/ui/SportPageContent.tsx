@@ -4,31 +4,32 @@ import React, { useState } from "react"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ChevronRight } from "lucide-react"
-import { SPORTS } from "@/features/public/shop/categories/data/categories"
-import { JERSEY_PRODUCTS } from "@/features/public/shop/products/data/mock-products"
 import { ShopHeader } from "@/features/public/shop/shared/ui/ShopHeader"
 import { CategoryFilters } from "./CategoryFilters"
 import { ProductGridSection } from "@/features/public/shop/products/ui/ProductGridSection"
 
 interface SportPageContentProps {
     sportSlug: string
+    initialSports: any[]
+    initialProducts: any[]
 }
 
-export function SportPageContent({ sportSlug }: SportPageContentProps) {
-    const sport = SPORTS.find((s) => s.slug === sportSlug)
+export function SportPageContent({ sportSlug, initialSports, initialProducts }: SportPageContentProps) {
+    const sport = initialSports.find((s) => s.slug === sportSlug)
     if (!sport) notFound()
 
-    // Tabs: All + each subcategory
+    // Tabs: All + each real category from DB
     const allTab = { slug: "all", name: "All" }
-    const tabs = [allTab, ...sport.subcategories.map((sub) => ({ slug: sub.slug, name: sub.name }))]
+    const tabs = [allTab, ...sport.categories.map((cat: any) => ({ slug: cat.slug, name: cat.name }))]
 
     const [active, setActive] = useState("all")
 
     const filtered = React.useMemo(() => {
-        const sportProducts = JERSEY_PRODUCTS.filter((p) => p.sport === sportSlug)
+        const sportProducts = initialProducts.filter((p) => p.sport === sportSlug)
         if (active === "all") return sportProducts
         return sportProducts.filter((p) => p.category === active)
-    }, [active, sportSlug])
+    }, [active, sportSlug, initialProducts])
+
 
     return (
         <div className="pt-32 pb-24 px-6">
@@ -64,7 +65,7 @@ export function SportPageContent({ sportSlug }: SportPageContentProps) {
                         Other Sports
                     </h2>
                     <div className="flex flex-wrap gap-3">
-                        {SPORTS.filter((s) => s.slug !== sportSlug).map((s) => (
+                        {initialSports.filter((s) => s.slug !== sportSlug).map((s: any) => (
                             <Link
                                 key={s.slug}
                                 href={`/shop/${s.slug}`}

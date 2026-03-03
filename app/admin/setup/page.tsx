@@ -2,9 +2,9 @@ import { db } from "@/lib/db"
 import { user } from "@/lib/db/schema"
 import { auth } from "@/lib/auth-server"
 import { redirect } from "next/navigation"
+import { CustomButton } from "@/shared/ui/branded/CustomButton"
 
 export default async function AdminSetup() {
-    // Check if any user exists
     const users = await db.select().from(user).limit(1)
 
     // If user exists, setup is locked
@@ -35,33 +35,35 @@ export default async function AdminSetup() {
     }
 
     return (
-        <div className="min-h-screen bg-zinc-950 flex flex-col justify-center items-center px-6">
-            <div className="w-full max-w-sm space-y-12">
-                <div className="text-center">
-                    <h1 className="font-black text-4xl tracking-tighter text-white uppercase italic mb-2">
-                        System <span className="text-primary">Initialization</span>
+        <div className="min-h-screen bg-slate-50 flex flex-col justify-center items-center px-6 py-12">
+            <div className="w-full max-w-md">
+                <div className="text-center mb-10">
+                    <h1 className="font-black text-3xl tracking-tighter text-secondary uppercase italic mb-3">
+                        ALL<span className="text-primary">STAR</span> <span className="text-slate-200">/</span> SETUP
                     </h1>
-                    <p className="text-white/30 text-[10px] font-black uppercase tracking-[0.4em]">Establish Primary Admin Manifest</p>
+                    <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.3em]">Create Your Administrator Account</p>
                 </div>
 
-                <form action={handleSetup} className="space-y-6 bg-zinc-900 p-10 border border-white/5 shadow-2xl">
-                    <div className="space-y-2">
-                        <label className="text-[9px] font-black tracking-[0.2em] text-white/20 uppercase">Admin Name</label>
-                        <input name="name" required className="w-full bg-white/5 border border-white/10 px-4 py-4 text-sm font-black text-white focus:outline-none focus:border-primary uppercase" />
-                    </div>
-                    <div className="space-y-2">
-                        <label className="text-[9px] font-black tracking-[0.2em] text-white/20 uppercase">Email Designator</label>
-                        <input name="email" type="email" required className="w-full bg-white/5 border border-white/10 px-4 py-4 text-sm font-black text-white focus:outline-none focus:border-primary uppercase" />
-                    </div>
-                    <div className="space-y-2">
-                        <label className="text-[9px] font-black tracking-[0.2em] text-white/20 uppercase">Secure Cipher</label>
-                        <input name="password" type="password" required className="w-full bg-white/5 border border-white/10 px-4 py-4 text-sm font-black text-white focus:outline-none focus:border-primary" />
-                    </div>
+                <div className="bg-white p-10 border border-slate-100">
+                    <form action={handleSetup} className="space-y-6">
+                        <div className="space-y-3">
+                            <label className="text-[10px] font-black tracking-[0.2em] text-slate-400 uppercase ml-1">Admin Name</label>
+                            <input name="name" required className="w-full h-14 bg-slate-50 border border-slate-100 px-6 text-sm font-black text-secondary focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all rounded-none" placeholder="YOUR NAME" />
+                        </div>
+                        <div className="space-y-3">
+                            <label className="text-[10px] font-black tracking-[0.2em] text-slate-400 uppercase ml-1">Email Address</label>
+                            <input name="email" type="email" required className="w-full h-14 bg-slate-50 border border-slate-100 px-6 text-sm font-black text-secondary focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all rounded-none" placeholder="name@allstarsports.app" />
+                        </div>
+                        <div className="space-y-3">
+                            <label className="text-[10px] font-black tracking-[0.2em] text-slate-400 uppercase ml-1">Password</label>
+                            <input name="password" type="password" required className="w-full h-14 bg-slate-50 border border-slate-100 px-6 text-sm font-black text-secondary focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all rounded-none" placeholder="MIN. 8 CHARACTERS" />
+                        </div>
 
-                    <button type="submit" className="w-full h-16 bg-primary text-white hover:bg-white hover:text-secondary transition-all flex items-center justify-center gap-3 text-xs font-black uppercase tracking-widest italic pt-1">
-                        INITIALIZE COMMANDER →
-                    </button>
-                </form>
+                        <CustomButton type="submit" className="w-full h-16 rounded-none text-sm italic font-black uppercase tracking-widest mt-4">
+                            Create Account
+                        </CustomButton>
+                    </form>
+                </div>
             </div>
         </div>
     )

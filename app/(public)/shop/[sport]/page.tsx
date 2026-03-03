@@ -1,5 +1,5 @@
 import { SportPageContent } from "@/features/public/shop/categories/ui/SportPageContent"
-import { SPORTS } from "@/features/public/shop/categories/data/categories"
+import { getPublicSports, getPublicProducts } from "@/lib/actions/public"
 import { notFound } from "next/navigation"
 
 interface Props {
@@ -7,12 +7,14 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-    return SPORTS.map((s) => ({ sport: s.slug }))
+    const sports = await getPublicSports()
+    return sports.map((s) => ({ sport: s.slug }))
 }
 
 export async function generateMetadata({ params }: Props) {
     const { sport: sportSlug } = await params
-    const sport = SPORTS.find((s) => s.slug === sportSlug)
+    const sports = await getPublicSports()
+    const sport = sports.find((s) => s.slug === sportSlug)
     if (!sport) return {}
     return {
         title: `${sport.name} Jerseys | Allstar Sports Apparel`,
@@ -22,7 +24,12 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function SportPage({ params }: Props) {
     const { sport: sportSlug } = await params
-    const sport = SPORTS.find((s) => s.slug === sportSlug)
+    const sports = await getPublicSports()
+    const products = await getPublicProducts()
+
+    const sport = sports.find((s) => s.slug === sportSlug)
     if (!sport) notFound()
-    return <SportPageContent sportSlug={sportSlug} />
+
+    return <SportPageContent sportSlug={sportSlug} initialSports={sports} initialProducts={products} />
 }
+

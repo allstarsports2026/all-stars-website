@@ -8,9 +8,12 @@ import { authClient } from "@/lib/auth-client"
 import { Menu, X, ChevronDown, LayoutDashboard } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { SPORTS } from "@/features/public/shop/categories/data/categories"
 
-export function Navbar() {
+interface NavbarProps {
+    initialSports: any[]
+}
+
+export function Navbar({ initialSports }: NavbarProps) {
     const { data: session } = authClient.useSession()
     const [isOpen, setIsOpen] = React.useState(false)
     const [collectionsOpen, setCollectionsOpen] = React.useState(false)
@@ -74,7 +77,7 @@ export function Navbar() {
                         {/* Mega Dropdown */}
                         {collectionsOpen && (
                             <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[520px] bg-white border border-black/5 shadow-xl p-6 grid grid-cols-3 gap-6 animate-in fade-in slide-in-from-top-2 duration-200">
-                                {SPORTS.map((sport) => (
+                                {initialSports.map((sport) => (
                                     <div key={sport.slug} className="flex flex-col gap-2">
                                         <Link
                                             href={`/shop/${sport.slug}`}
@@ -83,14 +86,14 @@ export function Navbar() {
                                         >
                                             {sport.name}
                                         </Link>
-                                        {sport.subcategories.map((sub) => (
+                                        {sport.categories.map((cat: any) => (
                                             <Link
-                                                key={sub.slug}
-                                                href={`/shop/${sport.slug}?cat=${sub.slug}`}
+                                                key={cat.slug}
+                                                href={`/shop/${sport.slug}?cat=${cat.slug}`}
                                                 onClick={() => setCollectionsOpen(false)}
                                                 className="text-[10px] font-bold uppercase tracking-widest text-secondary/30 hover:text-primary transition-colors pl-3 border-l border-primary/20"
                                             >
-                                                {sub.name}
+                                                {cat.name}
                                             </Link>
                                         ))}
                                     </div>
@@ -157,7 +160,7 @@ export function Navbar() {
                     {/* Sports in mobile */}
                     <div className="flex flex-col gap-3">
                         <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Collections</span>
-                        {SPORTS.map((sport) => (
+                        {initialSports.map((sport) => (
                             <div key={sport.slug} className="flex flex-col gap-1">
                                 <Link
                                     href={`/shop/${sport.slug}`}
@@ -166,14 +169,14 @@ export function Navbar() {
                                 >
                                     {sport.name}
                                 </Link>
-                                {sport.subcategories.map((sub) => (
+                                {sport.categories.map((cat: any) => (
                                     <Link
-                                        key={sub.slug}
-                                        href={`/shop/${sport.slug}?cat=${sub.slug}`}
+                                        key={cat.slug}
+                                        href={`/shop/${sport.slug}?cat=${cat.slug}`}
                                         onClick={() => setIsOpen(false)}
                                         className="text-sm font-bold uppercase tracking-widest text-secondary/40 pl-4"
                                     >
-                                        — {sub.name}
+                                        — {cat.name}
                                     </Link>
                                 ))}
                             </div>
@@ -195,3 +198,4 @@ export function Navbar() {
         </nav>
     )
 }
+

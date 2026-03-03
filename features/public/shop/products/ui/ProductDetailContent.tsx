@@ -4,8 +4,6 @@ import React from "react"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ChevronRight } from "lucide-react"
-import { JERSEY_PRODUCTS } from "@/features/public/shop/products/data/mock-products"
-import { SPORTS } from "@/features/public/shop/categories/data/categories"
 
 // Components
 import { ProductGallery } from "./ProductGallery"
@@ -15,17 +13,19 @@ import { RelatedJerseys } from "./RelatedJerseys"
 
 interface ProductDetailContentProps {
     sportSlug: string
-    productId: string
+    product: any
+    initialSports: any[]
+    initialProducts: any[]
 }
 
-export function ProductDetailContent({ sportSlug, productId }: ProductDetailContentProps) {
-    const product = JERSEY_PRODUCTS.find((p) => p.id === productId && p.sport === sportSlug)
-    if (!product) notFound()
-
-    const sport = SPORTS.find((s) => s.slug === sportSlug)
+export function ProductDetailContent({ sportSlug, product, initialSports, initialProducts }: ProductDetailContentProps) {
+    const sport = initialSports.find((s) => s.slug === sportSlug)
 
     // Related products (same sport, exclude current)
-    const related = JERSEY_PRODUCTS.filter((p) => p.sport === sportSlug && p.id !== productId).slice(0, 3)
+    const related = initialProducts
+        .filter((p) => p.sport === sportSlug && p.id !== product.id)
+        .slice(0, 3)
+
 
     return (
         <div className="pt-32 pb-24 px-6">

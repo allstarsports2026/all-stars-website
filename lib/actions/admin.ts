@@ -13,11 +13,17 @@ export async function getAdminStats() {
     const [productsCount] = await db.select({ count: count() }).from(products)
     const [messagesCount] = await db.select({ count: count() }).from(contactSubmissions)
 
+    const recentActivity = await db.query.contactSubmissions.findMany({
+        limit: 5,
+        orderBy: (subs, { desc }) => [desc(subs.createdAt)]
+    })
+
     return {
         sports: sportsCount.count,
         categories: categoriesCount.count,
         products: productsCount.count,
-        messages: messagesCount.count
+        messages: messagesCount.count,
+        recentActivity
     }
 }
 

@@ -5,11 +5,11 @@ import {
     Layers,
     Shirt,
     MessageSquare,
-    LogOut,
-    Menu,
-    X
+    LogOut
 } from "lucide-react"
 import { LogoutButton } from "./_components/LogoutButton"
+import { MobileNav } from "./_components/MobileNav"
+import { SidebarNav } from "./_components/SidebarNav"
 
 export const metadata = {
     title: "Admin Dashboard | Allstar Sports Apparel",
@@ -21,10 +21,13 @@ export default function AdminLayout({
     children: React.ReactNode
 }) {
     return (
-        <div className="flex h-screen bg-surface-alt overflow-hidden">
-            {/* Sidebar */}
-            <aside className="hidden lg:flex w-72 flex-col bg-secondary border-r border-white/5">
-                <div className="p-8">
+        <div className="flex flex-col lg:flex-row h-screen bg-slate-50 overflow-hidden">
+            {/* Mobile Nav */}
+            <MobileNav />
+
+            {/* Desktop Sidebar */}
+            <aside className="hidden lg:flex w-64 flex-col bg-white border-r border-slate-100">
+                <div className="p-8 bg-secondary">
                     <Link href="/admin" className="flex flex-col gap-1 group">
                         <span className="font-black text-2xl uppercase italic tracking-tighter text-white">
                             ALL<span className="text-primary">STAR</span>
@@ -35,36 +38,20 @@ export default function AdminLayout({
                     </Link>
                 </div>
 
-                <nav className="flex-1 px-4 py-4 flex flex-col gap-2">
-                    {[
-                        { name: "Overview", href: "/admin", icon: LayoutDashboard },
-                        { name: "Sports", href: "/admin/sports", icon: Trophy },
-                        { name: "Categories", href: "/admin/categories", icon: Layers },
-                        { name: "Products", href: "/admin/products", icon: Shirt },
-                        { name: "Messages", href: "/admin/messages", icon: MessageSquare },
-                    ].map((item) => (
-                        <Link
-                            key={item.name}
-                            href={item.href}
-                            className="flex items-center gap-4 px-4 py-4 text-xs font-black uppercase tracking-widest text-white/40 hover:text-white hover:bg-white/5 transition-all group"
-                        >
-                            <item.icon size={18} className="text-primary group-hover:scale-110 transition-transform" />
-                            {item.name}
-                        </Link>
-                    ))}
-                </nav>
+                <SidebarNav />
 
-                <div className="p-4 mt-auto">
+                <div className="p-6 mt-auto border-t border-slate-50">
                     <LogoutButton />
                 </div>
             </aside>
 
-            {/* Main Content */}
+            {/* Main Content Area */}
             <main className="flex-1 overflow-y-auto">
-                <div className="p-6 md:p-12">
+                <div className="p-6 md:p-12 max-w-7xl mx-auto">
                     {children}
                 </div>
             </main>
         </div>
     )
 }
+
