@@ -91,7 +91,21 @@ export async function addProduct(data: {
 
 export async function getProducts() {
     return await db.query.products.findMany({
+        with: {
+            sport: true,
+            category: true,
+        },
         orderBy: (products, { desc }) => [desc(products.createdAt)]
+    })
+}
+
+export async function getProductById(id: string) {
+    return await db.query.products.findFirst({
+        where: eq(products.id, id),
+        with: {
+            sport: true,
+            category: true,
+        }
     })
 }
 
