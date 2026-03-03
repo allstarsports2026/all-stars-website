@@ -93,6 +93,18 @@ export async function getProducts() {
     })
 }
 
+export async function deleteProduct(id: string) {
+    await db.delete(products).where(eq(products.id, id))
+    revalidatePath("/admin/products")
+    revalidatePath("/shop")
+}
+
+export async function deleteCategory(id: string) {
+    await db.delete(categories).where(eq(categories.id, id))
+    revalidatePath("/admin/categories")
+    revalidatePath("/shop")
+}
+
 // ─── MESSAGE MANAGEMENT ──────────────────────────────────────────────
 
 import { sendContactNotificationEmail } from "@/lib/mail"

@@ -1,6 +1,7 @@
-import { getSports, getCategoriesWithSports, getProducts } from "@/lib/actions/admin"
+import { getSports, getCategoriesWithSports, getProducts, deleteProduct } from "@/lib/actions/admin"
 import { ProductForm } from "./components/ProductForm"
-import { Shirt, Package, Plus, ChevronDown } from "lucide-react"
+import { DeleteButton } from "@/app/admin/(dashboard)/_components/DeleteButton"
+import { Shirt, Package, Plus } from "lucide-react"
 
 export const metadata = {
     title: "Manage Products | Admin Portal",
@@ -72,11 +73,12 @@ export default async function AdminProducts() {
                                     </div>
 
                                     <div className="flex flex-wrap gap-1 mt-auto">
-                                        {/* Color preview dots */}
                                         {JSON.parse(product.colors).map((c: any, i: number) => (
                                             <div key={i} className="h-2 w-2 border border-slate-100" style={{ backgroundColor: c.hex }} title={c.name} />
                                         ))}
                                     </div>
+
+                                    <DeleteButton id={product.id} onDelete={deleteProduct} label="Delete Product" />
                                 </div>
                             </div>
                         ))

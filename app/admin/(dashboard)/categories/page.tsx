@@ -1,5 +1,6 @@
-import { getCategoriesWithSports, getSports, addCategory } from "@/lib/actions/admin"
+import { getCategoriesWithSports, getSports, addCategory, deleteCategory } from "@/lib/actions/admin"
 import { SubmitButton } from "@/app/admin/(dashboard)/_components/SubmitButton"
+import { DeleteButton } from "@/app/admin/(dashboard)/_components/DeleteButton"
 import { format } from "date-fns"
 import {
     Layers,
@@ -115,6 +116,7 @@ export default async function AdminCategories() {
                                             <span className="text-[9px] font-black text-slate-200 uppercase tracking-[0.2em]">Created</span>
                                             <span className="text-[10px] font-black text-slate-300">{format(new Date(cat.createdAt), 'MMM yyyy')}</span>
                                         </div>
+                                        <DeleteButton id={cat.id} onDelete={deleteCategory} label="Delete" />
                                     </div>
                                 </div>
                             ))
