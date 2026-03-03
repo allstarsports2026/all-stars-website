@@ -34,8 +34,8 @@ export function ContactForm() {
     }
 
     return (
-        <div className="bg-surface-alt p-8 md:p-12 relative">
-            <h2 className="text-4xl font-black italic uppercase tracking-tighter mb-10 text-secondary">Direct Message</h2>
+        <div className="bg-surface-alt p-8 md:p-12 relative border border-black/5">
+            <h2 className="text-4xl font-black italic uppercase tracking-tighter mb-10 text-secondary">Send a Message</h2>
             <form className="space-y-10" onSubmit={handleSubmit}>
                 <div className="grid gap-10 md:grid-cols-2">
                     <div className="space-y-2">
@@ -44,7 +44,7 @@ export function ContactForm() {
                             name="firstName"
                             type="text"
                             required
-                            className="w-full rounded-none border-b border-border bg-transparent px-0 py-3 text-sm font-bold focus:outline-none focus:border-primary transition-colors text-secondary"
+                            className="w-full rounded-none border-b border-black/10 bg-transparent px-0 py-3 text-sm font-bold focus:outline-none focus:border-primary transition-colors text-secondary"
                         />
                     </div>
                     <div className="space-y-2">
@@ -53,7 +53,7 @@ export function ContactForm() {
                             name="lastName"
                             type="text"
                             required
-                            className="w-full rounded-none border-b border-border bg-transparent px-0 py-3 text-sm font-bold focus:outline-none focus:border-primary transition-colors text-secondary"
+                            className="w-full rounded-none border-b border-black/10 bg-transparent px-0 py-3 text-sm font-bold focus:outline-none focus:border-primary transition-colors text-secondary"
                         />
                     </div>
                 </div>
@@ -63,7 +63,7 @@ export function ContactForm() {
                         name="email"
                         type="email"
                         required
-                        className="w-full rounded-none border-b border-border bg-transparent px-0 py-3 text-sm font-bold focus:outline-none focus:border-primary transition-colors text-secondary"
+                        className="w-full rounded-none border-b border-black/10 bg-transparent px-0 py-3 text-sm font-bold focus:outline-none focus:border-primary transition-colors text-secondary"
                     />
                 </div>
                 <div className="space-y-2">
@@ -71,31 +71,31 @@ export function ContactForm() {
                     <select
                         name="topic"
                         required
-                        className="w-full rounded-none border-b border-border bg-transparent px-0 py-3 text-sm font-bold focus:outline-none focus:border-primary transition-colors appearance-none text-secondary"
+                        className="w-full rounded-none border-b border-black/10 bg-transparent px-0 py-3 text-sm font-bold focus:outline-none focus:border-primary transition-colors appearance-none text-secondary"
                     >
                         <option value="">Select Topic...</option>
-                        <option>General Inquiry</option>
-                        <option>Quote Request</option>
-                        <option>Sell Surplus</option>
-                        <option>Support & Warranty</option>
+                        <option>Custom Team Order</option>
+                        <option>Sponsorship Inquiry</option>
+                        <option>General Support</option>
+                        <option>Bulk Pricing</option>
                     </select>
                 </div>
                 <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Message</label>
+                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Message / Custom Details</label>
                     <textarea
                         name="message"
                         required
-                        className="min-h-[120px] w-full rounded-none border-b border-border bg-transparent px-0 py-3 text-sm font-bold focus:outline-none focus:border-primary transition-colors text-secondary"
+                        className="min-h-[120px] w-full rounded-none border-b border-black/10 bg-transparent px-0 py-3 text-sm font-bold focus:outline-none focus:border-primary transition-colors text-secondary"
                         placeholder="HOW CAN WE HELP YOU?"
                     ></textarea>
                 </div>
                 <Button
                     type="submit"
                     disabled={isPending}
-                    className="w-full h-16 bg-primary text-white hover:bg-secondary transition-all"
+                    className="w-full h-16 bg-primary text-white hover:bg-secondary transition-all rounded-none"
                 >
                     <span className="text-sm font-black uppercase italic tracking-widest flex items-center justify-center gap-3">
-                        {isPending ? <Loader2 className="animate-spin" /> : <>Send Transmission <Send className="h-4 w-4" /></>}
+                        {isPending ? <Loader2 className="animate-spin" /> : <>Send Message <Send className="h-4 w-4" /></>}
                     </span>
                 </Button>
                 <p className="text-[10px] text-muted-foreground mt-4 text-center">

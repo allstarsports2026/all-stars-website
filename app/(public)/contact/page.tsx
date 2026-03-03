@@ -11,8 +11,8 @@ export default function ContactPage() {
                 breadcrumb="Contact"
             />
 
-            <div className="container mx-auto px-4 py-24 sm:px-6 lg:px-8">
-                <div className="grid gap-24 lg:grid-cols-2">
+            <div className="container mx-auto px-4 py-12 md:py-20 sm:px-6 lg:px-8">
+                <div className="grid gap-12 md:gap-24 lg:grid-cols-2">
                     <ContactInfo />
                     <ContactForm />
                 </div>

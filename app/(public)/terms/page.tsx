@@ -14,7 +14,7 @@ export default function TermsOfServicePage() {
                 breadcrumb="Legal / Terms"
             />
 
-            <div className="container mx-auto px-4 py-24 sm:px-6 lg:px-8 max-w-4xl">
+            <div className="container mx-auto px-4 py-12 md:py-20 sm:px-6 lg:px-8 max-w-4xl">
                 <div className="prose prose-slate max-w-none">
                     <section className="mb-12">
                         <h2 className="text-2xl font-black uppercase italic tracking-tight text-secondary mb-6 border-l-4 border-primary pl-4">

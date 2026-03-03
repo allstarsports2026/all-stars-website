@@ -10,7 +10,7 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, description, breadcrumb, className }: PageHeaderProps) {
     return (
-        <section className={cn("relative overflow-hidden bg-surface-alt py-24 md:py-32", className)}>
+        <section className={cn("relative overflow-hidden bg-surface-alt py-16 md:py-20", className)}>
             {/* Technical Background Architecture */}
             <div className="absolute inset-0 opacity-[0.2] pointer-events-none" style={{ backgroundImage: 'linear-gradient(#e5e7eb 1px, transparent 1px), linear-gradient(90deg, #e5e7eb 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
             <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none" />
