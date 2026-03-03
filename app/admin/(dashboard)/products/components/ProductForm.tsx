@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { CldUploadWidget } from "next-cloudinary"
+import { toast } from "sonner"
 import {
     Plus,
     X,
@@ -79,7 +80,7 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
             window.location.reload() // Simple way to reset everything for now
         } catch (error) {
             console.error(error)
-            alert("Submission failed")
+            toast.error("Failed to add product entry.")
         } finally {
             setLoading(false)
         }
@@ -104,12 +105,17 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
 
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                             {imageUrls.map((url, idx) => (
-                                <div key={idx} className="relative aspect-square border border-white/10 group">
-                                    <img src={url} alt={`Upload ${idx + 1}`} className="w-full h-full object-cover p-2" />
+                                <div key={idx} className="relative aspect-square border border-white/10 bg-white/5 overflow-hidden">
+                                    <img
+                                        src={url}
+                                        alt={`Product image ${idx + 1}`}
+                                        className="w-full h-full object-contain p-2"
+                                    />
                                     <button
                                         type="button"
                                         onClick={() => setImageUrls(prev => prev.filter((_, i) => i !== idx))}
-                                        className="absolute top-1 right-1 h-6 w-6 bg-red-500 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                                        className="absolute top-0 right-0 h-6 w-6 bg-primary text-white flex items-center justify-center hover:bg-red-600 transition-colors z-10"
+                                        title="Remove Image"
                                     >
                                         <X size={12} />
                                     </button>
@@ -118,7 +124,7 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
 
                             {imageUrls.length < 5 && (
                                 <CldUploadWidget
-                                    uploadPreset="allstar_preset"
+                                    uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
                                     onSuccess={(result: any) => {
                                         if (imageUrls.length < 5) {
                                             setImageUrls(prev => [...prev, result.info.secure_url])
@@ -313,8 +319,17 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
                         disabled={loading || imageUrls.length === 0}
                         className="w-full h-20 text-lg flex items-center justify-center gap-4"
                     >
-                        {loading ? <Loader2 className="animate-spin text-white" /> : <Plus size={20} className="text-white" />}
-                        Save Product Entry →
+                        {loading ? (
+                            <>
+                                <Loader2 className="animate-spin text-white" />
+                                SAVING...
+                            </>
+                        ) : (
+                            <>
+                                <Plus size={20} className="text-white" />
+                                Save Product Entry →
+                            </>
+                        )}
                     </CustomButton>
                 </div>
             </div>
