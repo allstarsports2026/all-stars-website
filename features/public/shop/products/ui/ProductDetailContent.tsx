@@ -47,7 +47,7 @@ export function ProductDetailContent({ sportSlug, product, initialSports, initia
 
                     {/* Left — Product Gallery */}
                     <ProductGallery
-                        img={product.img}
+                        images={product.imgs}
                         name={product.name}
                         tag={product.tag}
                     />

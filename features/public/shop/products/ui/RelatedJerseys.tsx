@@ -1,5 +1,5 @@
 import { ProductCard } from "@/features/public/shop/products/ui/ProductCard"
-import { JerseyProduct } from "@/features/public/shop/products/data/mock-products"
+import { JerseyProduct } from "@/features/public/shop/products/types"
 
 interface RelatedJerseysProps {
     sportName: string

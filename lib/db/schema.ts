@@ -30,14 +30,14 @@ export const products = pgTable("products", {
   id: uuid("id").defaultRandom().primaryKey(),
   name: text("name").notNull(),
   description: text("description").notNull(),
-  image: text("image").notNull(),
+  images: text("images").array().notNull(),
   sportId: uuid("sport_id").references(() => sports.id).notNull(),
   categoryId: uuid("category_id").references(() => categories.id).notNull(),
   tag: text("tag"),
   adultSizes: text("adult_sizes").array().notNull(),
   youthSizes: text("youth_sizes").array().notNull(),
-  colors: text("colors").notNull(), // JSON string for {name, hex}[]
-  numbers: text("numbers").array().notNull(),
+  colors: text("colors"), // JSON string for {name, hex}[]
+  numbers: text("numbers").array(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

@@ -54,7 +54,7 @@ export default async function AdminProducts() {
                             <div key={product.id} className="bg-white border border-slate-100 overflow-hidden group hover:ring-2 hover:ring-primary/5 transition-all flex flex-col">
                                 <div className="aspect-[3/4] bg-slate-50 relative overflow-hidden flex items-center justify-center p-8">
                                     <img
-                                        src={product.image}
+                                        src={product.images[0]}
                                         alt={product.name}
                                         className="h-full w-full object-contain group-hover:scale-105 transition-transform duration-500"
                                     />
@@ -72,11 +72,13 @@ export default async function AdminProducts() {
                                         <span className="text-[9px] font-black uppercase tracking-widest text-slate-200">Ref: {product.id.slice(0, 8)}</span>
                                     </div>
 
-                                    <div className="flex flex-wrap gap-1 mt-auto">
-                                        {JSON.parse(product.colors).map((c: any, i: number) => (
-                                            <div key={i} className="h-2 w-2 border border-slate-100" style={{ backgroundColor: c.hex }} title={c.name} />
-                                        ))}
-                                    </div>
+                                    {product.colors && (
+                                        <div className="flex flex-wrap gap-1 mt-auto">
+                                            {JSON.parse(product.colors).map((c: any, i: number) => (
+                                                <div key={i} className="h-2 w-2 border border-slate-100" style={{ backgroundColor: c.hex }} title={c.name} />
+                                            ))}
+                                        </div>
+                                    )}
 
                                     <DeleteButton id={product.id} onDelete={deleteProduct} label="Delete Product" />
                                 </div>

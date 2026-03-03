@@ -27,12 +27,12 @@ export async function getPublicProducts() {
         sport: p.sport.slug,
         category: p.category.slug,
         tag: p.tag,
-        img: p.image,
+        imgs: p.images,
         description: p.description,
         adultSizes: p.adultSizes,
         youthSizes: p.youthSizes,
-        availableColors: JSON.parse(p.colors),
-        availableNumbers: p.numbers
+        availableColors: p.colors ? JSON.parse(p.colors) : [],
+        availableNumbers: p.numbers ?? []
     }))
 }
 
@@ -53,11 +53,11 @@ export async function getProductBySlug(id: string) {
         sport: p.sport.slug,
         category: p.category.slug,
         tag: p.tag,
-        img: p.image,
+        imgs: p.images,
         description: p.description,
         adultSizes: p.adultSizes,
         youthSizes: p.youthSizes,
-        availableColors: JSON.parse(p.colors),
-        availableNumbers: p.numbers
+        availableColors: p.colors ? JSON.parse(p.colors) : [],
+        availableNumbers: p.numbers ?? []
     }
 }

@@ -70,18 +70,20 @@ export async function getCategoriesWithSports() {
 export async function addProduct(data: {
     name: string
     description: string
-    image: string
+    images: string[]
     sportId: string
     categoryId: string
     tag?: string
     adultSizes: string[]
     youthSizes: string[]
-    colors: string // JSON string from Client
-    numbers: string[]
+    colors?: string // JSON string from Client
+    numbers?: string[]
 }) {
     await db.insert(products).values({
         ...data,
-        tag: data.tag || null
+        tag: data.tag || null,
+        colors: data.colors || null,
+        numbers: data.numbers || [],
     })
     revalidatePath("/admin/products")
     revalidatePath("/shop")

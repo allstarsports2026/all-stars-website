@@ -88,7 +88,7 @@ export function ProductVariants({
                 </div>
             </div>
 
-            {/* Color */}
+            {/* Color (Commented out as per request)
             <div>
                 <div className="flex items-center gap-2 mb-3">
                     <Palette size={12} className="text-primary" />
@@ -113,34 +113,36 @@ export function ProductVariants({
                         />
                     ))}
                 </div>
-            </div>
+            </div> */}
 
             {/* Jersey Number */}
-            <div>
-                <div className="flex items-center gap-2 mb-3">
-                    <Hash size={12} className="text-primary" />
-                    <span className="text-[10px] font-black uppercase tracking-[0.4em] text-secondary/50">
-                        Jersey Number
-                        {selectedNumber && <span className="text-primary ml-2">— #{selectedNumber}</span>}
-                    </span>
+            {availableNumbers && availableNumbers.length > 0 && (
+                <div>
+                    <div className="flex items-center gap-2 mb-3">
+                        <Hash size={12} className="text-primary" />
+                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-secondary/50">
+                            Jersey Number
+                            {selectedNumber && <span className="text-primary ml-2">— #{selectedNumber}</span>}
+                        </span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                        {availableNumbers.map((num) => (
+                            <button
+                                key={num}
+                                onClick={() => setSelectedNumber(num)}
+                                className={cn(
+                                    "h-9 min-w-[40px] px-2 text-[10px] font-black uppercase tracking-widest border transition-all duration-200",
+                                    selectedNumber === num
+                                        ? "bg-secondary text-white border-secondary"
+                                        : "bg-transparent text-secondary/60 border-secondary/15 hover:border-secondary hover:text-secondary"
+                                )}
+                            >
+                                #{num}
+                            </button>
+                        ))}
+                    </div>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                    {availableNumbers.map((num) => (
-                        <button
-                            key={num}
-                            onClick={() => setSelectedNumber(num)}
-                            className={cn(
-                                "h-9 min-w-[40px] px-2 text-[10px] font-black uppercase tracking-widest border transition-all duration-200",
-                                selectedNumber === num
-                                    ? "bg-secondary text-white border-secondary"
-                                    : "bg-transparent text-secondary/60 border-secondary/15 hover:border-secondary hover:text-secondary"
-                            )}
-                        >
-                            #{num}
-                        </button>
-                    ))}
-                </div>
-            </div>
+            )}
 
             {/* CTA */}
             <div className="border-t border-black/5 pt-6 flex flex-col gap-4">

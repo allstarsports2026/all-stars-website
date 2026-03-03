@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { JerseyProduct } from "@/features/public/shop/products/data/mock-products"
+import { JerseyProduct } from "@/features/public/shop/products/types"
 
 interface ProductCardProps {
     product: JerseyProduct
@@ -15,7 +15,7 @@ export function ProductCard({ product }: ProductCardProps) {
             {/* Image Container — same as FeaturedCollection */}
             <div className="relative aspect-[3/4] bg-secondary/[0.03] overflow-hidden border border-black/5 group-hover:border-primary/20 transition-all duration-300">
                 <Image
-                    src={product.img}
+                    src={product.imgs[0]}
                     alt={product.name}
                     fill
                     className="object-contain p-6 group-hover:scale-105 transition-transform duration-500"

@@ -24,7 +24,7 @@ interface ProductFormProps {
 
 export function ProductForm({ sports, categories }: ProductFormProps) {
     const [loading, setLoading] = useState(false)
-    const [imageUrl, setImageUrl] = useState("")
+    const [imageUrls, setImageUrls] = useState<string[]>([])
 
     // Form State
     const [adultSizes, setAdultSizes] = useState<string[]>(["S", "M", "L", "XL", "XXL"])
@@ -59,23 +59,23 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
     async function onSubmit(formData: FormData) {
         setLoading(true)
         try {
-            if (!imageUrl) throw new Error("Image required")
+            if (imageUrls.length === 0) throw new Error("At least one image required")
 
             await addProduct({
                 name: formData.get("name") as string,
                 description: formData.get("description") as string,
-                image: imageUrl,
+                images: imageUrls,
                 sportId: formData.get("sportId") as string,
                 categoryId: formData.get("categoryId") as string,
                 tag: formData.get("tag") as string,
                 adultSizes,
                 youthSizes,
-                colors: JSON.stringify(colors),
+                colors: colors.length > 0 ? JSON.stringify(colors) : undefined,
                 numbers,
             })
 
             // Reset form
-            setImageUrl("")
+            setImageUrls([])
             window.location.reload() // Simple way to reset everything for now
         } catch (error) {
             console.error(error)
@@ -95,37 +95,49 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
 
                     {/* Cloudinary Widget */}
                     <div className="space-y-4">
-                        <label className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30">Main Display Image</label>
-                        <CldUploadWidget
-                            uploadPreset="allstar_preset" // User needs to create this in Cloudinary
-                            onSuccess={(result: any) => setImageUrl(result.info.secure_url)}
-                        >
-                            {({ open }) => (
-                                <button
-                                    type="button"
-                                    onClick={() => open()}
-                                    className={cn(
-                                        "w-full aspect-[4/5] border-2 border-dashed flex flex-col items-center justify-center gap-4 transition-all group overflow-hidden relative",
-                                        imageUrl ? "border-primary/50" : "border-white/10 hover:border-primary/30"
-                                    )}
-                                >
-                                    {imageUrl ? (
-                                        <>
-                                            <img src={imageUrl} alt="Upload" className="absolute inset-0 w-full h-full object-contain p-8" />
-                                            <div className="absolute inset-0 bg-secondary/80 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                                <Plus size={24} className="text-primary mb-2" />
-                                                <span className="text-[10px] font-black uppercase tracking-widest text-white">Change Image</span>
-                                            </div>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <ImageIcon size={32} className="text-white/10 group-hover:text-primary transition-colors" />
-                                            <span className="text-[10px] font-black uppercase tracking-widest text-white/40 group-hover:text-white">Upload Product Image</span>
-                                        </>
-                                    )}
-                                </button>
+                        <div className="flex justify-between items-end">
+                            <label className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30">Display Images ({imageUrls.length}/5)</label>
+                            {imageUrls.length > 0 && (
+                                <button type="button" onClick={() => setImageUrls([])} className="text-[8px] font-black uppercase tracking-widest text-primary hover:text-white transition-colors">Clear All</button>
                             )}
-                        </CldUploadWidget>
+                        </div>
+
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                            {imageUrls.map((url, idx) => (
+                                <div key={idx} className="relative aspect-square border border-white/10 group">
+                                    <img src={url} alt={`Upload ${idx + 1}`} className="w-full h-full object-cover p-2" />
+                                    <button
+                                        type="button"
+                                        onClick={() => setImageUrls(prev => prev.filter((_, i) => i !== idx))}
+                                        className="absolute top-1 right-1 h-6 w-6 bg-red-500 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                                    >
+                                        <X size={12} />
+                                    </button>
+                                </div>
+                            ))}
+
+                            {imageUrls.length < 5 && (
+                                <CldUploadWidget
+                                    uploadPreset="allstar_preset"
+                                    onSuccess={(result: any) => {
+                                        if (imageUrls.length < 5) {
+                                            setImageUrls(prev => [...prev, result.info.secure_url])
+                                        }
+                                    }}
+                                >
+                                    {({ open }) => (
+                                        <button
+                                            type="button"
+                                            onClick={() => open()}
+                                            className="aspect-square border-2 border-dashed border-white/10 hover:border-primary/30 flex flex-col items-center justify-center gap-2 transition-all group"
+                                        >
+                                            <Plus size={20} className="text-white/10 group-hover:text-primary transition-colors" />
+                                            <span className="text-[8px] font-black uppercase tracking-widest text-white/40 group-hover:text-white">Add Image</span>
+                                        </button>
+                                    )}
+                                </CldUploadWidget>
+                            )}
+                        </div>
                     </div>
 
                     <div className="space-y-6">
@@ -216,7 +228,7 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
                     </div>
                 </div>
 
-                {/* Colors */}
+                {/* Colors (Commented out as per request)
                 <div className="bg-white border border-black/5 p-6 md:p-8 space-y-8">
                     <div className="flex items-center gap-4">
                         <Palette size={18} className="text-primary" />
@@ -255,7 +267,7 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
                             </button>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 {/* Numbers */}
                 <div className="bg-white border border-black/5 p-6 md:p-8 space-y-8">
@@ -298,7 +310,7 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
                 <div className="pt-6">
                     <CustomButton
                         type="submit"
-                        disabled={loading || !imageUrl}
+                        disabled={loading || imageUrls.length === 0}
                         className="w-full h-20 text-lg flex items-center justify-center gap-4"
                     >
                         {loading ? <Loader2 className="animate-spin text-white" /> : <Plus size={20} className="text-white" />}
