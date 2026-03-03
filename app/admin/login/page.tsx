@@ -23,7 +23,9 @@ export default function LoginPage() {
         }, {
             onSuccess: () => {
                 toast.success("Welcome back.")
-                window.location.href = "/admin"
+                setTimeout(() => {
+                    window.location.href = "/admin"
+                }, 300)
             },
             onError: (ctx: { error: { message?: string } }) => {
                 toast.error(ctx.error.message || "Invalid credentials")
