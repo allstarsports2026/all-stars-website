@@ -10,6 +10,7 @@ export async function proxy(request: NextRequest) {
   const sessionToken =
     request.cookies.get('better-auth.session-token')?.value ||
     request.cookies.get('better-auth.session_token')?.value ||
+    request.cookies.get('__Secure-better-auth.session_token')?.value ||
     request.cookies.get('__Secure-better-auth.session-token')?.value ||
     request.cookies.get('better_auth_session')?.value;
 
