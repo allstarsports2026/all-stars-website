@@ -98,7 +98,7 @@ export function HeroCarousel() {
                 {/* Product Image */}
                 <div
                     className={cn(
-                        "order-1 lg:order-2 flex items-center justify-center bg-white",
+                        "order-1 lg:order-2 relative flex items-center justify-center bg-white",
                         "h-[55vw] min-h-[220px] max-h-[380px]",
                         "lg:h-auto lg:max-h-none",
                         "transition-all duration-500 ease-out",
@@ -114,16 +114,15 @@ export function HeroCarousel() {
                             priority
                         />
                     </div>
-                </div>
-
-                {/* Mobile-only nav — sits directly under the image */}
-                <div className="order-2 lg:hidden flex items-center justify-between px-6 py-3">
-                    <NavDots />
-                    <NavArrows />
+                    {/* Mobile-only nav — overlaid at the bottom of the image */}
+                    <div className="absolute bottom-2 inset-x-0 lg:hidden flex items-center justify-between px-6">
+                        <NavDots />
+                        <NavArrows />
+                    </div>
                 </div>
 
                 {/* Text + CTA */}
-                <div className="order-3 lg:order-1 flex flex-col justify-center items-center text-center lg:items-start lg:text-left px-6 md:px-12 lg:px-20 py-8 lg:py-0">
+                <div className="order-2 lg:order-1 flex flex-col justify-center items-center text-center lg:items-start lg:text-left px-6 md:px-12 lg:px-20 py-8 lg:py-0">
                     <div className={cn(
                         "transition-all duration-350 ease-out",
                         fading ? "opacity-0 translate-y-3" : "opacity-100 translate-y-0"
@@ -151,12 +150,9 @@ export function HeroCarousel() {
                         </p>
 
                         {/* CTA */}
-                        <Link
-                            href="/shop"
-                            className="inline-flex items-center gap-3 bg-primary text-white px-6 py-3 lg:px-8 lg:py-4 font-black uppercase tracking-widest text-xs hover:opacity-90 transition-opacity"
-                        >
-                            <CustomButton variant="outline" size="lg"  />
-                        </Link>
+                        <CustomButton variant="outline" asChild size="lg">
+                            <Link href="/shop">Shop the Collection</Link>
+                        </CustomButton>
                     </div>
                 </div>
             </div>
