@@ -31,6 +31,8 @@ export function Navbar({ initialSports }: NavbarProps) {
         return () => document.removeEventListener("mousedown", handleClickOutside)
     }, [])
 
+    const [expandedSport, setExpandedSport] = React.useState<string | null>(null)
+
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/5">
             <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
@@ -154,42 +156,55 @@ export function Navbar({ initialSports }: NavbarProps) {
 
             {/* Mobile Menu */}
             {isOpen && (
-                <div className="lg:hidden absolute top-20 left-0 right-0 bg-white border-b border-secondary/10 px-8 pb-10 pt-6 flex flex-col gap-6 animate-in slide-in-from-top-4 duration-300 max-h-[80vh] overflow-y-auto">
-                    <Link href="/" className="text-4xl font-black uppercase italic tracking-tighter text-foreground" onClick={() => setIsOpen(false)}>Home</Link>
+                <div className="lg:hidden absolute top-20 left-0 right-0 bg-white border-b border-secondary/10 px-8 pb-10 pt-6 flex flex-col gap-5 animate-in slide-in-from-top-4 duration-300 max-h-[85vh] overflow-y-auto">
+                    <Link href="/" className="text-2xl font-black uppercase italic tracking-tighter text-foreground" onClick={() => setIsOpen(false)}>Home</Link>
 
                     {/* Sports in mobile */}
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-4">
                         <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Collections</span>
                         {initialSports.map((sport) => (
-                            <div key={sport.slug} className="flex flex-col gap-1">
-                                <Link
-                                    href={`/shop/${sport.slug}`}
-                                    onClick={() => setIsOpen(false)}
-                                    className="text-2xl font-black uppercase italic tracking-tighter text-foreground hover:text-primary transition-colors"
-                                >
-                                    {sport.name}
-                                </Link>
-                                {sport.categories.map((cat: any) => (
+                            <div key={sport.slug} className="flex flex-col">
+                                <div className="flex items-center justify-between py-1">
                                     <Link
-                                        key={cat.slug}
-                                        href={`/shop/${sport.slug}?cat=${cat.slug}`}
+                                        href={`/shop/${sport.slug}`}
                                         onClick={() => setIsOpen(false)}
-                                        className="text-sm font-bold uppercase tracking-widest text-secondary/40 pl-4"
+                                        className="text-xl font-black uppercase italic tracking-tighter text-foreground hover:text-primary transition-colors"
                                     >
-                                        — {cat.name}
+                                        {sport.name}
                                     </Link>
-                                ))}
+                                    <button
+                                        onClick={() => setExpandedSport(expandedSport === sport.slug ? null : sport.slug)}
+                                        className="p-2 text-secondary/40 hover:text-primary transition-colors"
+                                    >
+                                        <ChevronDown size={18} className={cn("transition-transform duration-200", expandedSport === sport.slug && "rotate-180")} />
+                                    </button>
+                                </div>
+
+                                {expandedSport === sport.slug && (
+                                    <div className="flex flex-col gap-3 py-3 pl-4 border-l border-primary/10 animate-in fade-in slide-in-from-top-1 duration-200">
+                                        {sport.categories.map((cat: any) => (
+                                            <Link
+                                                key={cat.slug}
+                                                href={`/shop/${sport.slug}?cat=${cat.slug}`}
+                                                onClick={() => setIsOpen(false)}
+                                                className="text-[11px] font-black uppercase tracking-widest text-secondary/40 hover:text-primary"
+                                            >
+                                                {cat.name}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         ))}
                     </div>
 
-                    <Link href="/about" className="text-4xl font-black uppercase italic tracking-tighter text-foreground" onClick={() => setIsOpen(false)}>Our Story</Link>
-                    <Link href="/contact" className="text-4xl font-black uppercase italic tracking-tighter text-foreground" onClick={() => setIsOpen(false)}>Contact Us</Link>
+                    <Link href="/about" className="text-2xl font-black uppercase italic tracking-tighter text-foreground" onClick={() => setIsOpen(false)}>Our Story</Link>
+                    <Link href="/contact" className="text-2xl font-black uppercase italic tracking-tighter text-foreground" onClick={() => setIsOpen(false)}>Contact Us</Link>
 
                     {session && (
                         <Link href="/admin" onClick={() => setIsOpen(false)}>
-                            <CustomButton variant="default" size="lg" className="w-full h-16 flex items-center justify-center uppercase italic tracking-widest mt-2 gap-3">
-                                <LayoutDashboard size={20} /> Admin Dashboard
+                            <CustomButton variant="default" size="lg" className="w-full h-14 flex items-center justify-center uppercase italic tracking-widest mt-2 gap-3 text-sm">
+                                <LayoutDashboard size={18} /> Admin Dashboard
                             </CustomButton>
                         </Link>
                     )}

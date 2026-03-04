@@ -73,7 +73,12 @@ export default async function AdminProducts() {
                                 <h4 className="text-sm font-black uppercase italic tracking-tight text-secondary leading-tight group-hover:text-primary transition-colors">
                                     {product.name}
                                 </h4>
-                                <span className="text-[8px] font-black uppercase tracking-[0.2em] text-slate-200 mt-2">View Full Details →</span>
+                                <div className="mt-2 flex items-center justify-center gap-2">
+                                    <span className="text-[10px] font-black text-primary">
+                                        ${product.price ? Number(product.price).toFixed(2) : "0.00"}
+                                    </span>
+                                    <span className="text-[8px] font-black uppercase tracking-[0.2em] text-slate-200">View Details →</span>
+                                </div>
                             </Link>
                         ))
                     )}

@@ -1,5 +1,9 @@
-import { HeroCarousel } from "@/shared/ui/branded/HeroCarousel"
+import { HeroCarousel, type HeroSlide } from "@/shared/ui/branded/HeroCarousel"
 
-export function HeroSection() {
-    return <HeroCarousel />
+interface HeroSectionProps {
+    slides?: HeroSlide[]
+}
+
+export function HeroSection({ slides }: HeroSectionProps) {
+    return <HeroCarousel slides={slides} />
 }

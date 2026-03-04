@@ -2,7 +2,7 @@ import { getProductById, deleteProduct } from "@/lib/actions/admin"
 import { notFound, redirect } from "next/navigation"
 import { DeleteButton } from "@/app/admin/(dashboard)/_components/DeleteButton"
 import Link from "next/link"
-import { ChevronLeft, Shirt, Hash, Ruler, Tag, Package } from "lucide-react"
+import { ChevronLeft, Shirt, Hash, Ruler, Tag, Package, Pencil } from "lucide-react"
 
 interface AdminProductDetailPageProps {
     params: Promise<{ id: string }>
@@ -32,7 +32,16 @@ export default async function AdminProductDetailPage({ params }: AdminProductDet
                 >
                     <ChevronLeft size={14} /> Back to Products
                 </Link>
-                <DeleteButton id={id} onDelete={handleDelete} label="Delete Product" />
+                <div className="flex items-center gap-3">
+                    <Link
+                        href={`/admin/products/${id}/edit`}
+                        className="flex items-center justify-center gap-2 px-4 py-2 border border-slate-100 text-slate-400 text-[10px] font-black uppercase tracking-widest hover:border-primary hover:text-primary transition-all"
+                    >
+                        <Pencil size={12} />
+                        Edit Product
+                    </Link>
+                    <DeleteButton id={id} onDelete={handleDelete} label="Delete Product" />
+                </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -46,7 +55,7 @@ export default async function AdminProductDetailPage({ params }: AdminProductDet
                             className="h-full w-full object-contain"
                         />
                         {product.tag && (
-                            <div className="absolute top-8 left-8 bg-primary text-white text-[10px] font-black uppercase tracking-widest px-4 py-2 shadow-[6px_6px_0px_var(--secondary)]">
+                            <div className="absolute top-8 left-8 bg-secondary/80 backdrop-blur-md text-white text-[9px] font-black uppercase tracking-[0.2em] px-3 py-2 shadow-sm">
                                 {product.tag}
                             </div>
                         )}

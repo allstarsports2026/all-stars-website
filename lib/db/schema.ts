@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, uuid, boolean } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, uuid, boolean, decimal } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 
 export const sports = pgTable("sports", {
@@ -38,6 +38,7 @@ export const products = pgTable("products", {
   youthSizes: text("youth_sizes").array().notNull(),
   colors: text("colors"), // JSON string for {name, hex}[]
   numbers: text("numbers").array(),
+  price: decimal("price", { precision: 10, scale: 2 }).notNull().default("0.00"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

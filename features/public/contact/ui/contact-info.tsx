@@ -2,15 +2,15 @@ import { Phone, Mail, Clock, Users } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const items = [
-    {
+    /* {
         icon: Phone,
         label: "Call Us",
         lines: ["+1 (234) 567-8900"],
-    },
+    }, */
     {
         icon: Mail,
         label: "Email Us",
-        lines: ["hello@allstar-apparel.com"],
+        lines: ["allstarsports2026@gmail.com"],
     },
     {
         icon: Clock,

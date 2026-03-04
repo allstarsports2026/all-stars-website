@@ -7,28 +7,43 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { CustomButton } from "./CustomButton"
 
-const SLIDES = [
+export type HeroSlide = {
+    image: string
+    label: string
+    title: string[]
+    description: string
+    href: string
+}
+
+const DEFAULT_SLIDES: HeroSlide[] = [
     {
         image: "/jerseys/black.png",
         label: "Pro Series",
         title: ["STEALTH", "ELITE"],
         description: "Premium performance fabric engineered for elite athletes. Built to move, designed to dominate.",
+        href: "/shop"
     },
     {
         image: "/jerseys/red.png",
         label: "Match Day",
         title: ["POWER", "RED"],
         description: "Match-day intensity meets precision tailoring. Own the field before you even step on it.",
+        href: "/shop"
     },
     {
         image: "/jerseys/silver.png",
         label: "Champion Edition",
         title: ["SILVER", "GLORY"],
         description: "Refined construction for those who've earned their place at the top. Champions only.",
+        href: "/shop"
     },
 ]
 
-export function HeroCarousel() {
+interface HeroCarouselProps {
+    slides?: HeroSlide[]
+}
+
+export function HeroCarousel({ slides = DEFAULT_SLIDES }: HeroCarouselProps) {
     const [current, setCurrent] = React.useState(0)
     const [fading, setFading] = React.useState(false)
 
@@ -41,19 +56,19 @@ export function HeroCarousel() {
         }, 350)
     }
 
-    const handlePrev = () => goTo((current - 1 + SLIDES.length) % SLIDES.length)
-    const handleNext = () => goTo((current + 1) % SLIDES.length)
+    const handlePrev = () => goTo((current - 1 + slides.length) % slides.length)
+    const handleNext = () => goTo((current + 1) % slides.length)
 
     React.useEffect(() => {
         const t = setInterval(handleNext, 9500)
         return () => clearInterval(t)
     }, [current])
 
-    const slide = SLIDES[current]
+    const slide = slides[current]
 
     const NavDots = () => (
         <div className="flex items-center gap-2 lg:gap-3">
-            {SLIDES.map((_, i) => (
+            {slides.map((_: HeroSlide, i: number) => (
                 <button
                     key={i}
                     onClick={() => goTo(i)}
@@ -99,13 +114,13 @@ export function HeroCarousel() {
                 <div
                     className={cn(
                         "order-1 lg:order-2 flex items-center justify-center bg-white",
-                        "h-[55vw] min-h-[220px] max-h-[380px]",
-                        "lg:h-auto lg:max-h-none",
+                        "h-[50vw] min-h-[200px] max-h-[320px]", // Reduced height
+                        "lg:h-[450px] lg:max-h-none", // Capped LG height
                         "transition-all duration-500 ease-out",
                         fading ? "opacity-0 scale-95" : "opacity-100 scale-100"
                     )}
                 >
-                    <div className="relative w-full h-full p-0 lg:p-12">
+                    <div className="relative w-full h-full p-4 lg:p-16">
                         <Image
                             src={slide.image}
                             alt={slide.title.join(" ")}
@@ -132,11 +147,11 @@ export function HeroCarousel() {
 
                         {/* Title */}
                         <h1
-                            className="font-black italic uppercase leading-none tracking-tighter text-secondary font-kanit mb-4 lg:mb-6"
-                            style={{ fontSize: "clamp(2.8rem, 9vw, 7rem)" }}
+                            className="font-black italic uppercase leading-[0.9] tracking-tighter text-secondary font-kanit mb-4 lg:mb-6"
+                            style={{ fontSize: "clamp(1.8rem, 5vw, 3.5rem)" }}
                         >
-                            {slide.title[0]}<br />
-                            <span className="text-primary">{slide.title[1]}</span>
+                            {slide.title[0]} <br />
+                            {slide.title[1]}
                         </h1>
 
                         {/* Description */}
@@ -146,7 +161,7 @@ export function HeroCarousel() {
 
                         {/* CTA */}
                         <CustomButton asChild>
-                            <Link href="/shop">Shop the Collection</Link>
+                            <Link href={slide.href}>Shop the Collection</Link>
                         </CustomButton>
 
                         {/* Mobile nav — under the button */}

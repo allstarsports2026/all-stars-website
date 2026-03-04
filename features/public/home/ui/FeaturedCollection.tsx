@@ -8,7 +8,7 @@ interface FeaturedCollectionProps {
 }
 
 export function FeaturedCollection({ products }: FeaturedCollectionProps) {
-    const featured = products.slice(0, 6)
+    const featured = products
 
 
     return (
@@ -18,8 +18,8 @@ export function FeaturedCollection({ products }: FeaturedCollectionProps) {
                 {/* Section Header */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
                     <div>
-                        <h4 className="text-primary font-black uppercase tracking-[0.4em] text-xs mb-3">Top Picks</h4>
-                        <h2 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter leading-none text-secondary">
+                        <h4 className="text-secondary/30 font-black uppercase tracking-[0.4em] text-[10px] mb-3">Top Picks</h4>
+                        <h2 className="text-3xl md:text-5xl font-black uppercase italic tracking-tighter leading-none text-secondary">
                             Featured <span className="text-primary">Collections</span>
                         </h2>
                     </div>

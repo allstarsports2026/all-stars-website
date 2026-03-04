@@ -6,15 +6,15 @@ const CONTACT_CHANNELS = [
     {
         icon: Mail,
         label: "Email Us",
-        value: "info@allstarsportsapparel.com",
-        href: "mailto:info@allstarsportsapparel.com",
+        value: "allstarsports2026@gmail.com",
+        href: "mailto:allstarsports2026@gmail.com",
     },
-    {
+    /* {
         icon: Phone,
         label: "Call or Text",
         value: "+1 (800) ALL-STAR",
         href: "tel:+18002557827",
-    },
+    }, */
     {
         icon: Instagram,
         label: "Instagram",

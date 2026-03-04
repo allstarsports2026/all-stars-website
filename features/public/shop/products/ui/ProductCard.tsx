@@ -21,7 +21,7 @@ export function ProductCard({ product }: ProductCardProps) {
                     className="object-contain p-6 group-hover:scale-105 transition-transform duration-500"
                 />
                 {product.tag && (
-                    <div className="absolute top-3 left-3 bg-primary text-white text-[9px] font-black uppercase tracking-widest px-2 py-1">
+                    <div className="absolute top-3 left-3 bg-secondary/80 backdrop-blur-md text-white text-[8px] font-black uppercase tracking-[0.2em] px-2.5 py-1.5 shadow-sm">
                         {product.tag}
                     </div>
                 )}
@@ -32,13 +32,20 @@ export function ProductCard({ product }: ProductCardProps) {
                 </div>
             </div>
 
-            <div className="mt-4">
-                <h3 className="text-lg font-black uppercase italic tracking-tight text-secondary">
-                    {product.name}
-                </h3>
-                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-secondary/30 mt-1">
-                    {product.sport.charAt(0).toUpperCase() + product.sport.slice(1)}
-                </p>
+            <div className="mt-4 flex flex-col sm:flex-row justify-between items-start gap-2 sm:gap-4">
+                <div className="flex-1 min-w-0">
+                    <h3 className="text-[14px] md:text-[16px] font-black uppercase italic tracking-tight text-secondary leading-tight">
+                        {product.name}
+                    </h3>
+                    <p className="text-[9px] font-black uppercase tracking-[0.3em] text-secondary/30 mt-1">
+                        {product.sport}
+                    </p>
+                </div>
+                <div className="shrink-0">
+                    <span className="text-xs md:text-sm font-black text-primary">
+                        ${product.price ? Number(product.price).toFixed(2) : "0.00"}
+                    </span>
+                </div>
             </div>
         </Link>
     )

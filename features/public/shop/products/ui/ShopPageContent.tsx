@@ -19,7 +19,7 @@ export function ShopPageContent({ initialSports, initialProducts }: ShopPageCont
         ...initialSports.flatMap((s) => [
             { slug: s.slug, name: s.name },
             ...s.categories.map((cat: any) => ({
-                slug: cat.slug,
+                slug: cat.id, // Use ID for uniqueness
                 name: `${s.name} — ${cat.name}`,
             })),
         ]),
@@ -33,11 +33,11 @@ export function ShopPageContent({ initialSports, initialProducts }: ShopPageCont
         // Check if it's a sport slug
         const activeSport = initialSports.find((s) => s.slug === active)
         if (activeSport) {
-            return initialProducts.filter((p) => p.sport === active)
+            return initialProducts.filter((p) => p.sportId === activeSport.id)
         }
 
-        // Otherwise filter by category slug
-        return initialProducts.filter((p) => p.category === active)
+        // Otherwise filter by category ID
+        return initialProducts.filter((p) => p.categoryId === active)
     }, [active, initialProducts, initialSports])
 
 

@@ -59,6 +59,7 @@ export function ProductDetailContent({ sportSlug, product, initialSports, initia
                             subcategoryName="Vintage Collection"
                             productName={product.name}
                             description={product.description}
+                            price={product.price}
                         />
 
                         <ProductVariants

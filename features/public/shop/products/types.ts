@@ -3,6 +3,8 @@ export type JerseyProduct = {
     name: string
     sport: string        // matches Sport.slug  e.g. "hockey"
     category: string     // matches subcategory slug e.g. "hockey-vintage"
+    sportId: string      // sport UUID
+    categoryId: string   // category UUID
     tag?: string | null
     imgs: string[]
     description: string
@@ -11,4 +13,5 @@ export type JerseyProduct = {
     youthSizes: string[]
     availableColors: { name: string; hex: string }[]
     availableNumbers?: string[]   // jersey numbers available
+    price: number
 }

@@ -71,8 +71,8 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
                 tag: formData.get("tag") as string,
                 adultSizes,
                 youthSizes,
-                colors: colors.length > 0 ? JSON.stringify(colors) : undefined,
                 numbers,
+                price: Number(formData.get("price")),
             })
 
             // Reset form
@@ -176,9 +176,15 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
                             </select>
                         </div>
                     </div>
-                    <div className="space-y-4">
-                        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-secondary/30 ml-1">Tag (Optional)</label>
-                        <input name="tag" placeholder="e.g. NEW ARRIVAL" className="w-full border border-slate-100 bg-slate-50 px-6 py-4 text-[10px] font-black uppercase tracking-widest rounded-none focus:ring-4 focus:ring-primary/10 transition-all outline-none" />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        <div className="space-y-4">
+                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-secondary/30 ml-1">Tag (Optional)</label>
+                            <input name="tag" placeholder="e.g. NEW ARRIVAL" className="w-full border border-slate-100 bg-slate-50 px-6 py-4 text-[10px] font-black uppercase tracking-widest rounded-none focus:ring-4 focus:ring-primary/10 transition-all outline-none" />
+                        </div>
+                        <div className="space-y-4">
+                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-secondary/30 ml-1">Price ($)</label>
+                            <input name="price" type="number" step="0.01" required placeholder="e.g. 29.99" className="w-full border border-slate-100 bg-slate-50 px-6 py-4 text-[10px] font-black uppercase tracking-widest rounded-none focus:ring-4 focus:ring-primary/10 transition-all outline-none" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -317,18 +323,18 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
                     <CustomButton
                         type="submit"
                         disabled={loading || imageUrls.length === 0}
-                        className="w-full h-20 text-lg flex items-center justify-center gap-4"
+                        className="w-full h-20 text-lg flex items-center justify-center gap-4 group"
                     >
                         {loading ? (
-                            <>
-                                <Loader2 className="animate-spin text-white" />
-                                SAVING...
-                            </>
+                            <div className="flex items-center gap-3">
+                                <Loader2 size={24} className="animate-spin" />
+                                <span>SAVING PRODUCT...</span>
+                            </div>
                         ) : (
-                            <>
-                                <Plus size={20} className="text-white" />
+                            <div className="flex items-center gap-3">
+                                <Plus size={20} className="group-hover:rotate-90 transition-transform duration-300" />
                                 Save Product Entry →
-                            </>
+                            </div>
                         )}
                     </CustomButton>
                 </div>

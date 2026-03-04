@@ -55,7 +55,7 @@ export function ProductGallery({ images, name, tag }: ProductGalleryProps) {
                 </div>
 
                 {tag && (
-                    <div className="absolute top-4 left-4 bg-primary text-white text-[9px] font-black uppercase tracking-widest px-3 py-1.5 z-10 shadow-[4px_4px_0px_var(--secondary)]">
+                    <div className="absolute top-4 left-4 bg-secondary/80 backdrop-blur-md text-white text-[8px] font-black uppercase tracking-[0.2em] px-2.5 py-1.5 z-10 shadow-sm">
                         {tag}
                     </div>
                 )}

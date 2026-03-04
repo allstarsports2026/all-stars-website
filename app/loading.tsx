@@ -9,7 +9,6 @@ export default function Loading() {
                     <div className="absolute inset-0 rounded-full border border-black/5" />
                     {/* Spinning ring */}
                     <div className="absolute inset-0 rounded-full border-2 border-primary border-t-transparent animate-spin" />
-                    {/* Slow spinning secondary ring */}
                     <div className="absolute inset-2 rounded-full border border-secondary/10 border-b-transparent animate-[spin_2s_linear_infinite]" />
                 </div>
                 <div className="flex flex-col items-center">

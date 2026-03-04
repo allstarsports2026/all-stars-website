@@ -20,15 +20,15 @@ export function SportPageContent({ sportSlug, initialSports, initialProducts }: 
 
     // Tabs: All + each real category from DB
     const allTab = { slug: "all", name: "All" }
-    const tabs = [allTab, ...sport.categories.map((cat: any) => ({ slug: cat.slug, name: cat.name }))]
+    const tabs = [allTab, ...sport.categories.map((cat: any) => ({ slug: cat.id, name: cat.name }))]
 
     const [active, setActive] = useState("all")
 
     const filtered = React.useMemo(() => {
-        const sportProducts = initialProducts.filter((p) => p.sport === sportSlug)
+        const sportProducts = initialProducts.filter((p) => p.sportId === sport.id)
         if (active === "all") return sportProducts
-        return sportProducts.filter((p) => p.category === active)
-    }, [active, sportSlug, initialProducts])
+        return sportProducts.filter((p) => p.categoryId === active)
+    }, [active, sport.id, initialProducts])
 
 
     return (

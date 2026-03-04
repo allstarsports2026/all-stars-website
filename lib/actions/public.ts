@@ -26,13 +26,16 @@ export async function getPublicProducts() {
         name: p.name,
         sport: p.sport.slug,
         category: p.category.slug,
+        sportId: p.sport.id,
+        categoryId: p.category.id,
         tag: p.tag,
         imgs: p.images,
         description: p.description,
         adultSizes: p.adultSizes,
         youthSizes: p.youthSizes,
         availableColors: p.colors ? JSON.parse(p.colors) : [],
-        availableNumbers: p.numbers ?? []
+        availableNumbers: p.numbers ?? [],
+        price: Number(p.price)
     }))
 }
 
@@ -52,12 +55,15 @@ export async function getProductBySlug(id: string) {
         name: p.name,
         sport: p.sport.slug,
         category: p.category.slug,
+        sportId: p.sport.id,
+        categoryId: p.category.id,
         tag: p.tag,
         imgs: p.images,
         description: p.description,
         adultSizes: p.adultSizes,
         youthSizes: p.youthSizes,
         availableColors: p.colors ? JSON.parse(p.colors) : [],
-        availableNumbers: p.numbers ?? []
+        availableNumbers: p.numbers ?? [],
+        price: Number(p.price)
     }
 }

@@ -36,6 +36,7 @@ export async function addSport(name: string) {
         slug
     })
     revalidatePath("/admin/sports")
+    revalidatePath("/", "layout")
 }
 
 export async function getSports() {
@@ -54,6 +55,7 @@ export async function addCategory(name: string, sportId: string) {
         sportId
     })
     revalidatePath("/admin/categories")
+    revalidatePath("/", "layout")
 }
 
 export async function getCategoriesWithSports() {
@@ -78,15 +80,24 @@ export async function addProduct(data: {
     youthSizes: string[]
     colors?: string // JSON string from Client
     numbers?: string[]
+    price: number
 }) {
     await db.insert(products).values({
-        ...data,
+        name: data.name,
+        description: data.description,
+        images: data.images,
+        sportId: data.sportId,
+        categoryId: data.categoryId,
+        adultSizes: data.adultSizes,
+        youthSizes: data.youthSizes,
         tag: data.tag || null,
         colors: data.colors || null,
         numbers: data.numbers || [],
+        price: data.price.toString(),
     })
     revalidatePath("/admin/products")
     revalidatePath("/shop")
+    revalidatePath("/")
 }
 
 export async function getProducts() {
@@ -113,12 +124,15 @@ export async function deleteProduct(id: string) {
     await db.delete(products).where(eq(products.id, id))
     revalidatePath("/admin/products")
     revalidatePath("/shop")
+    revalidatePath("/")
 }
 
 export async function deleteCategory(id: string) {
     await db.delete(categories).where(eq(categories.id, id))
     revalidatePath("/admin/categories")
     revalidatePath("/shop")
+    revalidatePath("/")
+    revalidatePath("/", "layout")
 }
 
 // ─── MESSAGE MANAGEMENT ──────────────────────────────────────────────
@@ -153,4 +167,38 @@ export async function getContactSubmissions() {
 export async function updateMessageStatus(id: string, status: "unread" | "read" | "archived") {
     await db.update(contactSubmissions).set({ status }).where(eq(contactSubmissions.id, id))
     revalidatePath("/admin/messages")
+}
+
+
+export async function updateProduct(id: string, data: {
+    name: string
+    description: string
+    images: string[]
+    sportId: string
+    categoryId: string
+    tag?: string
+    adultSizes: string[]
+    youthSizes: string[]
+    colors?: string
+    numbers?: string[]
+    price: number
+}) {
+    await db.update(products).set({
+        name: data.name,
+        description: data.description,
+        images: data.images,
+        sportId: data.sportId,
+        categoryId: data.categoryId,
+        tag: data.tag || null,
+        adultSizes: data.adultSizes,
+        youthSizes: data.youthSizes,
+        colors: data.colors || null,
+        numbers: data.numbers || [],
+        price: data.price.toString(),
+        updatedAt: new Date(),
+    }).where(eq(products.id, id))
+    revalidatePath("/admin/products")
+    revalidatePath(`/admin/products/${id}`)
+    revalidatePath("/shop")
+    revalidatePath("/")
 }

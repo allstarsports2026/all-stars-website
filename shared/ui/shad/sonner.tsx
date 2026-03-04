@@ -18,7 +18,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
         },
       }}
       icons={{
-        success: <CheckCircle2 className="h-4 w-4 text-emerald-500" />,
+        success: <CheckCircle2 className="h-4 w-4 text-primary" />,
         info: <Info className="h-4 w-4 text-blue-500" />,
         warning: <AlertTriangle className="h-4 w-4 text-amber-500" />,
         error: <AlertCircle className="h-4 w-4 text-red-500" />,
