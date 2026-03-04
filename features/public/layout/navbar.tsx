@@ -157,7 +157,7 @@ export function Navbar({ initialSports }: NavbarProps) {
             {/* Mobile Menu */}
             {isOpen && (
                 <div className="lg:hidden absolute top-20 left-0 right-0 bg-white border-b border-secondary/10 px-8 pb-10 pt-6 flex flex-col gap-5 animate-in slide-in-from-top-4 duration-300 max-h-[85vh] overflow-y-auto">
-                    <Link href="/" className="text-2xl font-black uppercase italic tracking-tighter text-foreground" onClick={() => setIsOpen(false)}>Home</Link>
+                    <Link href="/" className="text-lg font-black uppercase italic tracking-tighter text-foreground" onClick={() => setIsOpen(false)}>Home</Link>
 
                     {/* Sports in mobile */}
                     <div className="flex flex-col gap-4">
@@ -168,7 +168,7 @@ export function Navbar({ initialSports }: NavbarProps) {
                                     <Link
                                         href={`/shop/${sport.slug}`}
                                         onClick={() => setIsOpen(false)}
-                                        className="text-xl font-black uppercase italic tracking-tighter text-foreground hover:text-primary transition-colors"
+                                        className="text-base font-black uppercase italic tracking-tighter text-foreground hover:text-primary transition-colors"
                                     >
                                         {sport.name}
                                     </Link>
@@ -198,8 +198,8 @@ export function Navbar({ initialSports }: NavbarProps) {
                         ))}
                     </div>
 
-                    <Link href="/about" className="text-2xl font-black uppercase italic tracking-tighter text-foreground" onClick={() => setIsOpen(false)}>Our Story</Link>
-                    <Link href="/contact" className="text-2xl font-black uppercase italic tracking-tighter text-foreground" onClick={() => setIsOpen(false)}>Contact Us</Link>
+                    <Link href="/about" className="text-lg font-black uppercase italic tracking-tighter text-foreground" onClick={() => setIsOpen(false)}>Our Story</Link>
+                    <Link href="/contact" className="text-lg font-black uppercase italic tracking-tighter text-foreground" onClick={() => setIsOpen(false)}>Contact Us</Link>
 
                     {session && (
                         <Link href="/admin" onClick={() => setIsOpen(false)}>
