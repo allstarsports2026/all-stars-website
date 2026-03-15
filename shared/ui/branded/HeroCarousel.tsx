@@ -161,7 +161,7 @@ export function HeroCarousel({ slides = DEFAULT_SLIDES }: HeroCarouselProps) {
 
                         {/* CTA */}
                         <CustomButton asChild>
-                            <Link href={slide.href}>Shop the Collection</Link>
+                            <Link href={slide.href}>Shop Now</Link>
                         </CustomButton>
 
                         {/* Mobile nav — under the button */}
