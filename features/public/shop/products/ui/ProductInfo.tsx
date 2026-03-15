@@ -21,7 +21,7 @@ export function ProductInfo({
                     {sportName} — {subcategoryName}
                 </h4>
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-                    <h1 className="text-3xl md:text-7xl font-black uppercase italic tracking-tighter leading-none text-secondary">
+                    <h1 className="text-3xl md:text-4xl font-black uppercase italic tracking-tighter leading-none text-secondary">
                         {productName}
                     </h1>
                     <span className="text-3xl font-black text-primary italic">
