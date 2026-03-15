@@ -104,7 +104,7 @@ export function HeroCarousel({ slides = DEFAULT_SLIDES }: HeroCarouselProps) {
     )
 
     return (
-        <div className="w-full bg-white flex flex-col" style={{ minHeight: "90svh" }}>
+        <div className="w-full bg-white flex flex-col" style={{ minHeight: "30svh" }}>
             {/* Navbar offset */}
             <div className="h-14 shrink-0" />
 
