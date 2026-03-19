@@ -35,17 +35,17 @@ export function Navbar({ initialSports }: NavbarProps) {
 
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/5">
-            <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div className="max-w-7xl mx-auto px-2 md:px-4 h-20 flex items-center justify-between">
 
                 {/* Logo */}
                 <Link href="/" className="flex items-center group shrink-0">
-                    <div className="relative h-14 w-auto overflow-hidden">
+                    <div className="relative h-16 w-auto overflow-hidden">
                         <Image
-                            src="/logo.png"
+                            src="/logo-new.png"
                             alt="Allstar Sports Apparel"
-                            width={140}
-                            height={56}
-                            className="h-14 w-auto object-contain transform transition-transform duration-300 group-hover:scale-105"
+                            width={160}
+                            height={64}
+                            className="h-16 w-auto object-contain transform transition-transform duration-300 group-hover:scale-105"
                             priority
                         />
                     </div>

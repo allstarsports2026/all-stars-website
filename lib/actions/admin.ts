@@ -81,6 +81,9 @@ export async function addProduct(data: {
     colors?: string // JSON string from Client
     numbers?: string[]
     price: number
+    originalPrice?: number
+    isOnSale?: boolean
+    saleText?: string
 }) {
     await db.insert(products).values({
         name: data.name,
@@ -94,6 +97,9 @@ export async function addProduct(data: {
         colors: data.colors || null,
         numbers: data.numbers || [],
         price: data.price.toString(),
+        originalPrice: data.originalPrice?.toString() || null,
+        isOnSale: data.isOnSale || false,
+        saleText: data.saleText || null,
     })
     revalidatePath("/admin/products")
     revalidatePath("/shop")
@@ -182,6 +188,9 @@ export async function updateProduct(id: string, data: {
     colors?: string
     numbers?: string[]
     price: number
+    originalPrice?: number
+    isOnSale?: boolean
+    saleText?: string
 }) {
     await db.update(products).set({
         name: data.name,
@@ -195,6 +204,9 @@ export async function updateProduct(id: string, data: {
         colors: data.colors || null,
         numbers: data.numbers || [],
         price: data.price.toString(),
+        originalPrice: data.originalPrice?.toString() || null,
+        isOnSale: data.isOnSale || false,
+        saleText: data.saleText || null,
         updatedAt: new Date(),
     }).where(eq(products.id, id))
     revalidatePath("/admin/products")

@@ -39,6 +39,9 @@ export const products = pgTable("products", {
   colors: text("colors"), // JSON string for {name, hex}[]
   numbers: text("numbers").array(),
   price: decimal("price", { precision: 10, scale: 2 }).notNull().default("0.00"),
+  originalPrice: decimal("original_price", { precision: 10, scale: 2 }),
+  isOnSale: boolean("is_on_sale").default(false).notNull(),
+  saleText: text("sale_text"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

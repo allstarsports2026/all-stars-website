@@ -9,9 +9,11 @@ interface ProductGalleryProps {
     images: string[]
     name: string
     tag?: string | null
+    isOnSale?: boolean
+    saleText?: string | null
 }
 
-export function ProductGallery({ images, name, tag }: ProductGalleryProps) {
+export function ProductGallery({ images, name, tag, isOnSale, saleText }: ProductGalleryProps) {
     const [activeIndex, setActiveIndex] = useState(0)
     const [isOpen, setIsOpen] = useState(false)
 
@@ -54,11 +56,22 @@ export function ProductGallery({ images, name, tag }: ProductGalleryProps) {
                     <Maximize2 size={18} />
                 </div>
 
-                {tag && (
-                    <div className="absolute top-4 left-4 bg-secondary/80 backdrop-blur-md text-white text-[8px] font-black uppercase tracking-[0.2em] px-2.5 py-1.5 z-10 shadow-sm">
-                        {tag}
+                {/* Badges */}
+                <div className="absolute inset-0 p-4 pointer-events-none flex flex-col justify-between">
+                    <div className="flex justify-between items-start">
+                        {tag ? (
+                            <div className="bg-secondary/80 backdrop-blur-md text-white text-[8px] font-black uppercase tracking-[0.2em] px-2.5 py-1.5 shadow-sm">
+                                {tag}
+                            </div>
+                        ) : <div />}
+                        
+                        {isOnSale && saleText && (
+                            <div className="bg-primary text-white h-12 w-12 rounded-full flex items-center justify-center text-center text-[10px] font-black uppercase tracking-tight shadow-xl rotate-12 flex-shrink-0 animate-pulse">
+                                <span className="leading-[0.85]">{saleText.split(' ').join('\n')}</span>
+                            </div>
+                        )}
                     </div>
-                )}
+                </div>
             </div>
 
             {/* Thumbnails */}

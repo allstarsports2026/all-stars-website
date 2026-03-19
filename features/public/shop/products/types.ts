@@ -14,4 +14,7 @@ export type JerseyProduct = {
     availableColors: { name: string; hex: string }[]
     availableNumbers?: string[]   // jersey numbers available
     price: number
+    originalPrice?: number | null
+    isOnSale?: boolean
+    saleText?: string | null
 }

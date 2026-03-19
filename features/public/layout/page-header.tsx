@@ -26,7 +26,7 @@ export function PageHeader({ title, description, breadcrumb, className }: PageHe
                         </div>
                     )}
 
-                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-secondary leading-[0.85] tracking-tighter italic uppercase mb-8">
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-secondary leading-[0.85] tracking-tighter italic uppercase mb-8">
                         {title}
                     </h1>
 

@@ -35,7 +35,10 @@ export async function getPublicProducts() {
         youthSizes: p.youthSizes,
         availableColors: p.colors ? JSON.parse(p.colors) : [],
         availableNumbers: p.numbers ?? [],
-        price: Number(p.price)
+        price: Number(p.price),
+        originalPrice: p.originalPrice ? Number(p.originalPrice) : null,
+        isOnSale: p.isOnSale,
+        saleText: p.saleText,
     }))
 }
 
@@ -64,6 +67,9 @@ export async function getProductBySlug(id: string) {
         youthSizes: p.youthSizes,
         availableColors: p.colors ? JSON.parse(p.colors) : [],
         availableNumbers: p.numbers ?? [],
-        price: Number(p.price)
+        price: Number(p.price),
+        originalPrice: p.originalPrice ? Number(p.originalPrice) : null,
+        isOnSale: p.isOnSale,
+        saleText: p.saleText,
     }
 }

@@ -104,9 +104,9 @@ export function HeroCarousel({ slides = DEFAULT_SLIDES }: HeroCarouselProps) {
     )
 
     return (
-        <div className="w-full bg-white flex flex-col" style={{ minHeight: "50svh" }}>
+        <div className="w-full bg-white flex flex-col" style={{ minHeight: "60svh" }}>
             {/* Navbar offset */}
-            <div className="h-14 shrink-0" />
+            <div className="h-20 lg:h-24 shrink-0" />
 
             <div className="flex-grow flex flex-col lg:grid lg:grid-cols-2 overflow-hidden">
 
@@ -114,31 +114,31 @@ export function HeroCarousel({ slides = DEFAULT_SLIDES }: HeroCarouselProps) {
                 <div
                     className={cn(
                         "order-1 lg:order-2 flex items-center justify-center bg-white",
-                        "h-[50vw] min-h-[200px] max-h-[320px]", // Reduced height
-                        "lg:h-[450px] lg:max-h-none", // Capped LG height
+                        "h-[40vw] min-h-[180px] max-h-[300px]", // Reduced height on mobile
+                        "lg:h-[500px] lg:max-h-none",
                         "transition-all duration-500 ease-out",
                         fading ? "opacity-0 scale-95" : "opacity-100 scale-100"
                     )}
                 >
-                    <div className="relative w-full h-full p-4 lg:p-16">
+                    <div className="relative w-full h-full p-2 lg:p-16">
                         <Image
                             src={slide.image}
                             alt={slide.title.join(" ")}
                             fill
-                            className="object-contain pointer-events-none select-none drop-shadow-xl"
+                            className="object-contain pointer-events-none select-none"
                             priority
                         />
                     </div>
                 </div>
 
                 {/* Text + CTA */}
-                <div className="order-2 lg:order-1 flex flex-col justify-center items-center text-center lg:items-start lg:text-left px-6 md:px-12 lg:px-20 py-8 lg:py-0">
+                <div className="order-2 lg:order-1 flex flex-col justify-center items-center text-center lg:items-start lg:text-left px-6 md:px-12 lg:px-20 py-4 lg:py-0">
                     <div className={cn(
                         "transition-all duration-350 ease-out",
                         fading ? "opacity-0 translate-y-3" : "opacity-100 translate-y-0"
                     )}>
                         {/* Series Label */}
-                        <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
+                        <div className="flex items-center justify-center lg:justify-start gap-3 mb-2 lg:mb-4">
                             <div className="h-[2px] w-8 bg-primary" />
                             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">
                                 {slide.label}
@@ -147,15 +147,15 @@ export function HeroCarousel({ slides = DEFAULT_SLIDES }: HeroCarouselProps) {
 
                         {/* Title */}
                         <h1
-                            className="font-black italic uppercase leading-[0.9] tracking-tighter text-secondary font-kanit mb-4 lg:mb-6"
-                            style={{ fontSize: "clamp(1.8rem, 5vw, 3.5rem)" }}
+                            className="font-black italic uppercase leading-[0.9] tracking-tighter text-secondary font-kanit mb-3 lg:mb-6"
+                            style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)" }}
                         >
                             {slide.title[0]} <br />
                             {slide.title[1]}
                         </h1>
 
                         {/* Description */}
-                        <p className="hidden sm:block text-sm lg:text-base text-secondary/50 font-medium max-w-sm leading-relaxed mb-8 lg:mb-10">
+                        <p className="hidden sm:block text-sm lg:text-base text-secondary/50 font-medium max-w-sm leading-relaxed mb-6 lg:mb-10">
                             {slide.description}
                         </p>
 

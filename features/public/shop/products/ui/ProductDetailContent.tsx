@@ -50,6 +50,8 @@ export function ProductDetailContent({ sportSlug, product, initialSports, initia
                         images={product.imgs}
                         name={product.name}
                         tag={product.tag}
+                        isOnSale={product.isOnSale}
+                        saleText={product.saleText}
                     />
 
                     {/* Right — Product Details */}
@@ -60,6 +62,9 @@ export function ProductDetailContent({ sportSlug, product, initialSports, initia
                             productName={product.name}
                             description={product.description}
                             price={product.price}
+                            originalPrice={product.originalPrice}
+                            isOnSale={product.isOnSale}
+                            saleText={product.saleText}
                         />
 
                         <ProductVariants

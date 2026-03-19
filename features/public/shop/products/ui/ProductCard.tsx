@@ -20,11 +20,21 @@ export function ProductCard({ product }: ProductCardProps) {
                     fill
                     className="object-contain p-6 group-hover:scale-105 transition-transform duration-500"
                 />
-                {product.tag && (
-                    <div className="absolute top-3 left-3 bg-secondary/80 backdrop-blur-md text-white text-[8px] font-black uppercase tracking-[0.2em] px-2.5 py-1.5 shadow-sm">
-                        {product.tag}
+                <div className="absolute inset-0 p-3 pointer-events-none flex flex-col justify-between">
+                    <div className="flex justify-between items-start">
+                        {product.tag ? (
+                            <div className="bg-secondary/80 backdrop-blur-md text-white text-[8px] font-black uppercase tracking-[0.2em] px-2.5 py-1.5 shadow-sm">
+                                {product.tag}
+                            </div>
+                        ) : <div />}
+                        
+                        {product.isOnSale && product.saleText && (
+                            <div className="bg-primary text-white h-10 w-10 rounded-full flex items-center justify-center text-center text-[8px] font-black uppercase tracking-tight shadow-lg rotate-12 flex-shrink-0 animate-pulse-subtle">
+                                <span className="leading-[0.85]">{product.saleText.split(' ').join('\n')}</span>
+                            </div>
+                        )}
                     </div>
-                )}
+                </div>
                 <div className="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/5 transition-all duration-300 flex items-end justify-center pb-5 opacity-0 group-hover:opacity-100">
                     <span className="text-[10px] font-black uppercase tracking-widest text-primary border border-primary bg-white px-4 py-2">
                         View Details →
@@ -41,7 +51,12 @@ export function ProductCard({ product }: ProductCardProps) {
                         {product.sport}
                     </p>
                 </div>
-                <div className="shrink-0">
+                <div className="shrink-0 flex flex-col items-end">
+                    {product.isOnSale && product.originalPrice && (
+                        <span className="text-[10px] font-bold text-secondary/30 line-through italic leading-none mb-1">
+                            ${Number(product.originalPrice).toFixed(2)}
+                        </span>
+                    )}
                     <span className="text-xs md:text-sm font-black text-primary">
                         ${product.price ? Number(product.price).toFixed(2) : "0.00"}
                     </span>

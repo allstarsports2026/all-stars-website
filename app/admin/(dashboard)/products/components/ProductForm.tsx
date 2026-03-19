@@ -56,6 +56,9 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
                 youthSizes,
                 numbers,
                 price: Number(formData.get("price")),
+                originalPrice: formData.get("originalPrice") ? Number(formData.get("originalPrice")) : undefined,
+                isOnSale: formData.get("isOnSale") === "on",
+                saleText: formData.get("saleText") as string,
             })
 
             toast.success("Product created successfully!")
@@ -194,9 +197,37 @@ export function ProductForm({ sports, categories }: ProductFormProps) {
                                 <label className="text-[10px] font-black uppercase tracking-[0.2em] text-secondary/50">Listing Tag</label>
                                 <input name="tag" className={inputClasses} placeholder="E.G. LIMITED EDITION" />
                             </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                            <div className="space-y-4 pt-10 border-t border-black/5">
+                                <label className="flex items-center gap-3 cursor-pointer group">
+                                    <div className="relative">
+                                        <input
+                                            name="isOnSale"
+                                            type="checkbox"
+                                            className="peer sr-only"
+                                        />
+                                        <div className="h-6 w-11 rounded-full bg-black/10 transition-colors peer-checked:bg-primary" />
+                                        <div className="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform peer-checked:translate-x-5" />
+                                    </div>
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-secondary">Is this product on sale?</span>
+                                </label>
+                            </div>
+                            <div className="space-y-2 pt-10 border-t border-black/5">
+                                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-secondary/50">Sale Label (Optional)</label>
+                                <input name="saleText" className={inputClasses} placeholder="E.G. 20% OFF, BLACK FRIDAY" />
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-secondary/50">Price (USD)</label>
+                                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-secondary/50">Current Price (USD)</label>
                                 <input name="price" type="number" step="0.01" required className={inputClasses} placeholder="29.99" />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-secondary/50">Original Price (USD) - Optional</label>
+                                <input name="originalPrice" type="number" step="0.01" className={inputClasses} placeholder="45.00" />
                             </div>
                         </div>
                     </div>
