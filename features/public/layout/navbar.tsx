@@ -35,7 +35,7 @@ export function Navbar({ initialSports }: NavbarProps) {
 
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/5">
-            <div className="max-w-7xl mx-auto px-2 md:px-4 h-20 flex items-center justify-between">
+            <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
 
                 {/* Logo */}
                 <Link href="/" className="flex items-center group shrink-0">
@@ -145,12 +145,11 @@ export function Navbar({ initialSports }: NavbarProps) {
                     </div>
                 )}
 
-                {/* Mobile Toggle */}
                 <button
-                    className="lg:hidden p-2 text-secondary"
+                    className="lg:hidden p-1.5 text-secondary hover:text-primary transition-colors"
                     onClick={() => setIsOpen(!isOpen)}
                 >
-                    {isOpen ? <X size={24} /> : <Menu size={24} />}
+                    {isOpen ? <X size={28} /> : <Menu size={28} />}
                 </button>
             </div>
 

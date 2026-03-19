@@ -7,6 +7,7 @@ interface ProductInfoProps {
     originalPrice?: number | null
     isOnSale?: boolean
     saleText?: string | null
+    tag?: string | null
 }
 
 export function ProductInfo({
@@ -17,7 +18,8 @@ export function ProductInfo({
     price,
     originalPrice,
     isOnSale,
-    saleText
+    saleText,
+    tag
 }: ProductInfoProps) {
     return (
         <div className="flex flex-col gap-6">
@@ -27,6 +29,11 @@ export function ProductInfo({
                     <h4 className="text-primary font-black uppercase tracking-[0.4em] text-xs">
                         {sportName} — {subcategoryName}
                     </h4>
+                    {tag && (
+                        <div className="bg-secondary/5 border border-secondary/10 text-secondary text-[8px] font-black underline decoration-primary decoration-2 underline-offset-4 uppercase tracking-[0.2em] px-2.5 py-1.5 ">
+                            {tag}
+                        </div>
+                    )}
                     {isOnSale && saleText && (
                         <div className="bg-primary text-white text-[9px] font-black px-3 py-1 uppercase tracking-[0.2em] italic rounded-full shadow-lg shadow-primary/20 animate-pulse">
                             SALE: {saleText}

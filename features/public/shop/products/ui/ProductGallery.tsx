@@ -59,11 +59,7 @@ export function ProductGallery({ images, name, tag, isOnSale, saleText }: Produc
                 {/* Badges */}
                 <div className="absolute inset-0 p-4 pointer-events-none flex flex-col justify-between">
                     <div className="flex justify-between items-start">
-                        {tag ? (
-                            <div className="bg-secondary/80 backdrop-blur-md text-white text-[8px] font-black uppercase tracking-[0.2em] px-2.5 py-1.5 shadow-sm">
-                                {tag}
-                            </div>
-                        ) : <div />}
+                        <div />
                         
                         {isOnSale && saleText && (
                             <div className="bg-primary text-white h-12 w-12 rounded-full flex items-center justify-center text-center text-[10px] font-black uppercase tracking-tight shadow-xl rotate-12 flex-shrink-0 animate-pulse">

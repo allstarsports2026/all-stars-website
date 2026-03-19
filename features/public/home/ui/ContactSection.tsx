@@ -5,8 +5,8 @@ import { CustomButton } from "@/shared/ui/branded/CustomButton"
 const CONTACT_CHANNELS = [
     {
         icon: Mail,
-        label: "Email Us",
-        value: "allstarsports2026@gmail.com",
+        label: "Email us",
+        value: "Tap to send a message",
         href: "mailto:allstarsports2026@gmail.com",
     },
     /* {
@@ -63,10 +63,10 @@ export function ContactSection() {
                                 <ch.icon size={20} className="text-primary" />
                             </div>
                             <div className="flex flex-col min-w-0 overflow-hidden">
-                                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-secondary/30 mb-0.5">
+                                <span className="text-[10px] font-black tracking-[0.4em] text-secondary/30 mb-0.5">
                                     {ch.label}
                                 </span>
-                                <span className="text-sm font-black uppercase tracking-wide text-secondary group-hover:text-primary transition-colors break-all">
+                                <span className="text-sm font-black tracking-wide text-secondary group-hover:text-primary transition-colors break-all">
                                     {ch.value}
                                 </span>
                             </div>

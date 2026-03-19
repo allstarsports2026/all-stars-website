@@ -65,6 +65,7 @@ export function ProductDetailContent({ sportSlug, product, initialSports, initia
                             originalPrice={product.originalPrice}
                             isOnSale={product.isOnSale}
                             saleText={product.saleText}
+                            tag={product.tag}
                         />
 
                         <ProductVariants

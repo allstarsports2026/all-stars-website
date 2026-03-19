@@ -22,12 +22,6 @@ export function ProductCard({ product }: ProductCardProps) {
                 />
                 <div className="absolute inset-0 p-3 pointer-events-none flex flex-col justify-between">
                     <div className="flex justify-between items-start">
-                        {product.tag ? (
-                            <div className="bg-secondary/80 backdrop-blur-md text-white text-[8px] font-black uppercase tracking-[0.2em] px-2.5 py-1.5 shadow-sm">
-                                {product.tag}
-                            </div>
-                        ) : <div />}
-                        
                         {product.isOnSale && product.saleText && (
                             <div className="bg-primary text-white h-10 w-10 rounded-full flex items-center justify-center text-center text-[8px] font-black uppercase tracking-tight shadow-lg rotate-12 flex-shrink-0 animate-pulse-subtle">
                                 <span className="leading-[0.85]">{product.saleText.split(' ').join('\n')}</span>
